@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 namespace OLXFakedBackend.Controllers
 {
 
-    [Route("api/[controller]")]
+    [Route("api/items")]
     public class ItemsController : Controller
     {
         //items/categories(GET)

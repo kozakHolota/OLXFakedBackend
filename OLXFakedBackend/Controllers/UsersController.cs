@@ -10,7 +10,7 @@ namespace OLXFakedBackend.Controllers
 {
 
 
-    [Route("api/[controller]")]
+    [Route("api/users")]
     public class UsersController : Controller
     {
 
@@ -29,7 +29,8 @@ namespace OLXFakedBackend.Controllers
             return "user has successfully logged in";
         }
 
-        [HttpGet("{id}")]
+        [Route("{id}")]
+        [HttpGet]
         public string GetUserById(int id)
         {
             return $"this user with id# {id}";
