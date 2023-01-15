@@ -1,5 +1,12 @@
 ﻿//This is first my comment
+using Microsoft.EntityFrameworkCore;
+using OLXFakedBackend.Models;
+
 var builder = WebApplication.CreateBuilder(args);
+
+//Initialize MS SQL DB
+builder.Services.AddDbContext<ShopDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ShopDbContext")));
 
 // Add services to the container.
 
