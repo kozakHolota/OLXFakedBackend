@@ -4,12 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OLXFakedBackend.Models
 {
-	public class ContactPerson
+	public class Image
 	{
         [Key]
-        public long Id { get; set; }
-		public string Name { get; set; }
-		public City? City { get; set; }
-	}
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ImageId { get; set; }
+		public string Path { get; set; }
+
+    }
 }
 

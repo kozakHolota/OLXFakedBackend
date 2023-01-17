@@ -32,8 +32,16 @@
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="Microsoft.EntityFrameworkCore.Relational.Design" />
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer.Design" />
+    <None Remove="Contracts\" />
+    <None Remove="Repository\" />
+    <None Remove="Models\Db\" />
+    <None Remove="Models\Api\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Contracts\" />
+    <Folder Include="Repository\" />
+    <Folder Include="Models\Db\" />
+    <Folder Include="Models\Api\" />
   </ItemGroup>
 </Project>
