@@ -22,6 +22,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational.Design" Version="1.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
+    <PackageReference Include="ChoETL" Version="1.2.1.51" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +37,8 @@
     <None Remove="Repository\" />
     <None Remove="Models\Db\" />
     <None Remove="Models\Api\" />
+    <None Remove="DeploymentData\" />
+    <None Remove="ChoETL" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -43,5 +46,6 @@
     <Folder Include="Repository\" />
     <Folder Include="Models\Db\" />
     <Folder Include="Models\Api\" />
+    <Folder Include="DeploymentData\" />
   </ItemGroup>
 </Project>
