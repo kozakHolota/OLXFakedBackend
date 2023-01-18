@@ -35,7 +35,7 @@ namespace OLXFakedBackend.Controllers
             if (namePart.Length > 0)
             {
 
-                resList = await _repositoryWrapper.CitiesRepository.FindByCondition(city => city.Name.Contains(namePart)).ToListAsync();
+                resList = await _repositoryWrapper.CitiesRepository.FindByCondition(city => city.Name.StartsWith(namePart)).ToListAsync();
 
             } else
             {
