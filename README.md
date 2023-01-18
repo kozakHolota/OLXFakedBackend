@@ -11,7 +11,7 @@ To deploy the application we need next things to be installed:
 We can get the docker environment up typing in the command terminal from the solution folder:
 
 ```
-cd docker-compose && docker compose up -d
+docker compose up -d
 ```
 
 From the _Visual Studio_ the same thing can be done simply by running the project.

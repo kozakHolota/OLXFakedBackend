@@ -39,6 +39,7 @@
     <None Remove="Models\Api\" />
     <None Remove="DeploymentData\" />
     <None Remove="ChoETL" />
+    <None Remove="Utils\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -47,5 +48,6 @@
     <Folder Include="Models\Db\" />
     <Folder Include="Models\Api\" />
     <Folder Include="DeploymentData\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
 </Project>
