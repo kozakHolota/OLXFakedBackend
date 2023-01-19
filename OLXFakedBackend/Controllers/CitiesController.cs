@@ -30,7 +30,6 @@ namespace OLXFakedBackend.Controllers
         public async Task<ActionResult> GetAllCities(string namePart="", int pageSize=5, int pageNum=1)
         {
             List<City> resList;
-            var _paginator = new Paginator<City>(pageSize);
 
             if (namePart.Length > 0)
             {
@@ -42,7 +41,9 @@ namespace OLXFakedBackend.Controllers
                 resList = await _repositoryWrapper.CitiesRepository.FindAll().ToListAsync();
             }
 
-            return Ok(new Cities { page=pageNum, pages=_paginator.GetPagesNumber(resList), cities = _paginator.Get(resList, pageNum) });
+            var _paginator = new Paginator<City>(pageSize, resList);
+
+            return Ok(new Cities { page=pageNum, pages=_paginator.GetPagesNumber(), cities = _paginator.Get(pageNum) });
         }
     }
 }
