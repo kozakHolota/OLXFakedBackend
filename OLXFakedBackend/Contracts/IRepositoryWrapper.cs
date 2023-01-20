@@ -5,7 +5,7 @@ namespace OLXFakedBackend.Contracts
 	{
 		ICitiesRepository CitiesRepository { get; }
 
-		void Save();
+		void SaveAsync();
 	}
 }
 

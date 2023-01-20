@@ -34,11 +34,11 @@ namespace OLXFakedBackend.Controllers
             if (namePart.Length > 0)
             {
 
-                resList = await _repositoryWrapper.CitiesRepository.FindByCondition(city => city.Name.StartsWith(namePart)).ToListAsync();
+                resList = await (await _repositoryWrapper.CitiesRepository.FindByCondition(city => city.Name.StartsWith(namePart))).ToListAsync();
 
             } else
             {
-                resList = await _repositoryWrapper.CitiesRepository.FindAll().ToListAsync();
+                resList = await (await _repositoryWrapper.CitiesRepository.FindAll()).ToListAsync();
             }
 
             var _paginator = new Paginator<City>(pageSize, resList);

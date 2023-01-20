@@ -13,15 +13,15 @@ namespace OLXFakedBackend.Contracts
             ShopDbContext = shopDbContext;
 		}
 
-        public void Create(T entity) => ShopDbContext.Set<T>().Add(entity);
+        public async void Create(T entity) => ShopDbContext.Set<T>().Add(entity);
 
-        public void Delete(T entity) => ShopDbContext.Set<T>().Remove(entity);
+        public async void Delete(T entity) => ShopDbContext.Set<T>().Remove(entity);
 
-        public IQueryable<T> FindAll() => ShopDbContext.Set<T>().AsNoTracking();
+        public async Task<IQueryable<T>> FindAll() => ShopDbContext.Set<T>().AsNoTracking();
 
-        public IQueryable<T> FindByCondition(System.Linq.Expressions.Expression<Func<T, bool>> expression) => ShopDbContext.Set<T>().Where(expression).AsNoTracking();
+        public async Task<IQueryable<T>> FindByCondition(System.Linq.Expressions.Expression<Func<T, bool>> expression) => ShopDbContext.Set<T>().Where(expression).AsNoTracking();
 
-        public void Update(T entity) => ShopDbContext.Set<T>().Update(entity);
+        public async void Update(T entity) => ShopDbContext.Set<T>().Update(entity);
     }
 }
 
