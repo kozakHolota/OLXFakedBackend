@@ -41,9 +41,11 @@ namespace OLXFakedBackend.Utils
 			{
 				int cutOffValue = (inList.Count - 1) - FinPosition;
 				if (StartPosition > (inList.Count - 1)) resList = new List<T>();
-				else if (StartPosition == (inList.Count - 1)) resList = inList.GetRange(StartPosition, 1);
-
-				else if (cutOffValue < 0)
+				else if (StartPosition == (inList.Count - 1))
+                {
+                    resList = inList.GetRange(StartPosition, 1);
+                }
+                else if (cutOffValue < 0)
 				{
 					int repairedFinPosition = FinPosition + cutOffValue - 1;
 
@@ -51,9 +53,12 @@ namespace OLXFakedBackend.Utils
 				}
 				else resList = inList.GetRange(StartPosition, FinPosition - StartPosition);
 			}
-			else resList = inList;
+			else
+            {
+                resList = inList;
+            }
 
-			return resList;
+            return resList;
         }
 
 		public int GetPagesNumber()
