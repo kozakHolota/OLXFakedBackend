@@ -24,7 +24,7 @@ namespace OLXFakedBackend.Repository
             _shopDbContext = shopDbContext;
         }
 
-        public async void SaveAsync()
+        public async Task SaveAsync()
         {
             await _shopDbContext.SaveChangesAsync();
         }

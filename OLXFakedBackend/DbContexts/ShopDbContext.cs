@@ -3,6 +3,7 @@ using System.Formats.Asn1;
 using System.Text;
 using ChoETL;
 using Microsoft.EntityFrameworkCore;
+using OLXFakedBackend.Models.Db;
 
 namespace OLXFakedBackend.Models
 {
@@ -17,14 +18,24 @@ namespace OLXFakedBackend.Models
         public DbSet<ContactData> ContactData { get; set; }
         public DbSet<Item> Item { get; set; }
         public DbSet<UserItem> UserItem { get; set; }
+        public DbSet<ClientIdentity> ClientIdentity { get; set; }
+        public DbSet<RefreshToken> RefreshToken { get; set; }
 
         public ShopDbContext(DbContextOptions options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
-            using (var reader = new ChoCSVReader("DeploymentData/UkrainianCities.csv").WithFirstLineHeader()) {
+            using (var reader = new ChoCSVReader<City>("DeploymentData/UkrainianCities.csv").WithFirstLineHeader()) {
                 foreach (dynamic item in reader)
                 {
-                    modelBuilder.Entity<City>().HasData(new City { CityId = int.Parse(item.ID), Name = item.NAME });
+                    modelBuilder.Entity<City>().HasData(item);
+                }
+            }
+
+            using (var reader = new ChoCSVReader<Category>("DeploymentData/Categories.csv").WithFirstLineHeader().ThrowAndStopOnMissingField(false).Configure(c=> c.QuoteAllFields = true))
+            {
+                foreach (dynamic item in reader)
+                {                   
+                    modelBuilder.Entity<Category>().HasData(item);
                 }
             }
         }
