@@ -50,9 +50,9 @@ namespace OLXFakedBackend.Controllers
 
         //items(items search endpoint - GET
         [HttpGet]
-        public string GetAllItems()
+        public async Task<ActionResult> GetAllItems(int pageSize = 5, int pageNum = 1)
         {
-            return "this is all items";
+            return null;
         }
 
         //items/{item_id}(GET)

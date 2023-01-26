@@ -11,7 +11,7 @@ namespace OLXFakedBackend.Models
         public int ContactDataId { get; set; }
 		public string Email { get; set; }
 		public string Phone { get; set; }
-		public City? City { get; set; }
+		public string? City { get; set; }
     }
 }
 
