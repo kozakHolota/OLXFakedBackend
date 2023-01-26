@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  olxfakedbackend:
+    image: ${DOCKER_REGISTRY-}olxfakedbackend
+    build:
+      context: .
+      dockerfile: OLXFakedBackend/Dockerfile
+    ports:
+      - 8080:80
+      - 8443:443
+  backend_db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+       MSSQL_SA_PASSWORD: test3210!
+       ACCEPT_EULA: Y
+    ports:
+       - 1433:1433

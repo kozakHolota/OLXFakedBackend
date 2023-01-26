@@ -1,24 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
+using OLXFakedBackend.Contracts;
+using OLXFakedBackend.Models;
+using OLXFakedBackend.Models.Api;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace OLXFakedBackend.Controllers
 {
-
+    [Produces(MediaTypeNames.Application.Json)]
     [Route("api/items")]
     public class ItemsController : Controller
     {
+        private IRepositoryWrapper _repositoryWrapper;
+
+        public ItemsController(IRepositoryWrapper repositoryWrapper)
+        {
+            _repositoryWrapper = repositoryWrapper;
+        }
+
         //items/categories(GET)
         [Route("categories")]
         [HttpGet]
-        public string GetItemCategories()
+        public async Task<ActionResult> GetItemCategories()
         {
-            return "this is all item catecories";
+            List<SuperCategory> superCategories = new List<SuperCategory>();
+
+            foreach(var category in await _repositoryWrapper.CategoryRepository.FindByCondition(cat => cat.ParentCategoryId == null))
+            {
+                superCategories.Add(new SuperCategory { CategoryId = category.CategoryId, Name = category.Name});
+            }
+
+            foreach(var superCategory in superCategories)
+            {
+                superCategory.SubCategories = new List<CategoryApi>();
+                foreach(var subCategory in await _repositoryWrapper.CategoryRepository.FindByCondition(category => category.ParentCategoryId == superCategory.CategoryId)) {
+                    superCategory.SubCategories.Add(new CategoryApi { CategoryId = subCategory.CategoryId, Name = subCategory.Name });
+                }
+            }
+
+            return Ok(superCategories);
         }
 
 
