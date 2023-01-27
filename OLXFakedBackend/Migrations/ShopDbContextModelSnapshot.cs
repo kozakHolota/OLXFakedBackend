@@ -3331,8 +3331,8 @@ namespace OLXFakedBackend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContactDataId"));
 
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("CityId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -3343,6 +3343,8 @@ namespace OLXFakedBackend.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ContactDataId");
+
+                    b.HasIndex("CityId");
 
                     b.ToTable("ContactData");
                 });
@@ -3590,6 +3592,15 @@ namespace OLXFakedBackend.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserItem");
+                });
+
+            modelBuilder.Entity("OLXFakedBackend.Models.ContactData", b =>
+                {
+                    b.HasOne("OLXFakedBackend.Models.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId");
+
+                    b.Navigation("City");
                 });
 
             modelBuilder.Entity("OLXFakedBackend.Models.ContactPerson", b =>
