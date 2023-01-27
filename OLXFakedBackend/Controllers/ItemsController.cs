@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using OLXFakedBackend.Contracts;
 using OLXFakedBackend.Models;
 using OLXFakedBackend.Models.Api;
+using OLXFakedBackend.Utils;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -50,9 +51,11 @@ namespace OLXFakedBackend.Controllers
 
         //items(items search endpoint - GET
         [HttpGet]
-        public string GetAllItems()
+        public async Task<ActionResult> GetAllItems(int pageSize = 50, int pageNum = 1)
         {
-            return "this is all items";
+            List<ItemApi> items = await _repositoryWrapper.ItemsViewRepository.FindAll();
+            var _paginator = new Paginator<ItemApi>(pageSize, items);
+            return Ok(new Items { page = pageNum, pages = _paginator.GetPagesNumber(), items = _paginator.Get(pageNum) });
         }
 
         //items/{item_id}(GET)

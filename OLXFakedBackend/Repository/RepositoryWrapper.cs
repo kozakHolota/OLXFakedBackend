@@ -9,6 +9,7 @@ namespace OLXFakedBackend.Repository
         private ShopDbContext _shopDbContext;
         private ICitiesRepository _citiesRepository;
         private ICategoryRepository _categoryRepository;
+        private IItemsViewRepository _itemsRepository;
 
         public ICitiesRepository CitiesRepository
         {
@@ -25,6 +26,15 @@ namespace OLXFakedBackend.Repository
                 if (_categoryRepository == null) _categoryRepository = new CategoryRepository(_shopDbContext);
 
                 return _categoryRepository;
+            }
+        }
+
+        public IItemsViewRepository ItemsViewRepository {
+            get
+            {
+                if (_itemsRepository == null) _itemsRepository = new ItemsViewRepository(_shopDbContext);
+
+                return _itemsRepository;
             }
         }
 
