@@ -6,8 +6,7 @@ namespace OLXFakedBackend.Contracts
 {
 	public interface IItemsViewRepository : IRepositoryBase<ItemApi>
     {
-        Task<IQueryable<ItemApi>> GetItemsQuery();
-
+        Task<IQueryable<ItemApi>> GetItemsQuery(List<System.Linq.Expressions.Expression<Func<ItemApi, bool>>> expressions = null);
     }
 }
 
