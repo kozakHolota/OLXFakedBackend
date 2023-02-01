@@ -54,10 +54,14 @@ namespace OLXFakedBackend.Repository
             return await (await GetItemsQuery()).AsNoTracking().ToListAsync();
         }
 
-        public async ValueTask<List<ItemApi>> FindByConditions(List<System.Linq.Expressions.Expression<Func<ItemApi, bool>>> expressions, Paginator<ItemApi> paginator = null, int pageNum = 1)
+        public async ValueTask<List<ItemApi>> FindByConditions(
+            List<System.Linq.Expressions.Expression<Func<ItemApi, bool>>> expressions,
+            Paginator<ItemApi> paginator = null, int pageNum = 1
+            )
         {
-            if (paginator != null) return await paginator.Get(pageNum, (await GetItemsQuery(expressions)).AsNoTracking()).ToListAsync();
-            return await (await GetItemsQuery(expressions)).AsNoTracking().ToListAsync();
+            IQueryable<ItemApi> query = await GetItemsQuery(expressions);
+            if (paginator != null) query = paginator.Get(pageNum, query);
+            return await query.AsNoTracking().ToListAsync();
         }
 
     }

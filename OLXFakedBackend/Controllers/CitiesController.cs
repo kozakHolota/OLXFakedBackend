@@ -40,7 +40,7 @@ namespace OLXFakedBackend.Controllers
 
             } else
             {
-                resList = await _repositoryWrapper.CitiesRepository.FindAll();
+                resList = await _repositoryWrapper.CitiesRepository.FindAll(paginator: _paginator, pageNum: pageNum);
             }
 
             return Ok(new Cities { page=pageNum, pages=_paginator.GetPagesNumber(), cities = resList });

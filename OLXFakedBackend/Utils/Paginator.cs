@@ -45,7 +45,7 @@ namespace OLXFakedBackend.Utils
 			PageNum = pageNum;
 
 			if (inQuery == null && _inQuery == null) throw new Exception("No Query to paginate");
-			else if (inQuery == null && _inQuery != null) inQuery = _inQuery;
+			else inQuery = _inQuery;
 
 			if (pageNum >= 0)
 			{

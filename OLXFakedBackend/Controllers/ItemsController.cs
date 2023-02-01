@@ -52,10 +52,18 @@ namespace OLXFakedBackend.Controllers
 
         //items(items search endpoint - GET
         [HttpGet]
-        public async Task<ActionResult> GetAllItems(int pageSize = 50, int pageNum = 1)
+        public async Task<ActionResult> GetAllItems(int pageSize = 50, int pageNum = 1, string category=null, string cityPart=null)
         {
+            List<ItemApi> items;
             var _paginator = new Paginator<ItemApi>(pageSize);
-            List<ItemApi> items = await _repositoryWrapper.ItemsViewRepository.FindAll(paginator: _paginator, pageNum: pageNum);
+
+            List<System.Linq.Expressions.Expression<Func<ItemApi, bool>>> conditions = new List<System.Linq.Expressions.Expression<Func<ItemApi, bool>>>();
+
+            if (category != null) conditions.Add(c => c.category == category);
+            if (cityPart != null) conditions.Add(c => c.city.StartsWith(cityPart));
+
+            if (conditions.Count > 0) items = await _repositoryWrapper.ItemsViewRepository.FindByConditions(conditions, paginator: _paginator, pageNum: pageNum);
+            else items = await _repositoryWrapper.ItemsViewRepository.FindAll(paginator: _paginator, pageNum: pageNum);
             
             return Ok(new Items { page = pageNum, pages = _paginator.GetPagesNumber(), items = items });
         }
