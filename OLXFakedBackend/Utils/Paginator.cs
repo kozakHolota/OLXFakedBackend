@@ -8,12 +8,20 @@ namespace OLXFakedBackend.Utils
 		private int pageSize;
 
 		private int PageNum { get; set; }
-		List<T> inList;
+        IQueryable<T> inQuery;
 
         private int StartPosition {
 			get
 			{
 				return (PageNum - 1) * pageSize;
+            }
+		}
+
+		private int Count
+		{
+			get
+			{
+				return (inQuery == null) ? 0 : inQuery.Count();
             }
 		}
 
@@ -26,44 +34,46 @@ namespace OLXFakedBackend.Utils
 		}
 
 
-        public Paginator(int pageSize, List<T> inList)
+        public Paginator(int pageSize, IQueryable<T> inQuery = null)
 		{
             this.pageSize = pageSize;
-			this.inList = inList;
-
+			this.inQuery = inQuery;
         }
 
-		public List<T> Get(int pageNum)
+		public IQueryable<T> Get(int pageNum, IQueryable<T> _inQuery=null)
 		{
 			PageNum = pageNum;
-			List<T> resList;
+
+			if (inQuery == null && _inQuery == null) throw new Exception("No Query to paginate");
+			else inQuery = _inQuery;
+
 			if (pageNum >= 0)
 			{
-				int cutOffValue = (inList.Count - 1) - FinPosition;
-				if (StartPosition > (inList.Count - 1)) resList = new List<T>();
-				else if (StartPosition == (inList.Count - 1))
-                {
-                    resList = inList.GetRange(StartPosition, 1);
-                }
-                else if (cutOffValue < 0)
+				int cutOffValue = (Count - 1) - FinPosition;
+				if (StartPosition > (Count - 1)) return inQuery.Skip(Count);
+				else if (StartPosition == (Count - 1))
+				{
+					return inQuery.Skip(StartPosition).Take(1);
+				}
+				else if (cutOffValue < 0)
 				{
 					int repairedFinPosition = FinPosition + cutOffValue - 1;
 
-					resList = (repairedFinPosition <= (inList.Count - 1)) ? inList.GetRange(StartPosition, (repairedFinPosition - StartPosition)) : inList.GetRange(StartPosition, (inList.Count - StartPosition));
+					return (repairedFinPosition <= (Count - 1)) ? inQuery.Skip(StartPosition).Take((repairedFinPosition - StartPosition)) : inQuery.Skip(StartPosition).Take((Count - StartPosition));
 				}
-				else resList = inList.GetRange(StartPosition, FinPosition - StartPosition);
 			}
-			else
-            {
-                resList = inList;
-            }
 
-            return resList;
+
+			return inQuery.Skip(StartPosition).Take(FinPosition - StartPosition);
+
         }
 
-		public int GetPagesNumber()
+		public int GetPagesNumber(IQueryable<T> _inQuery = null)
 		{
-			return pageSize > inList.Count ? 1 : inList.Count / pageSize;
+            if (inQuery == null && _inQuery == null) throw new Exception("No Query to paginate");
+            else if (inQuery == null && _inQuery != null) inQuery = _inQuery;
+
+            return pageSize > Count ? 1 : Count / pageSize;
 		}
 	}
 }

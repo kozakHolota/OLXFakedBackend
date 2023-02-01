@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mime;
 using System.Threading.Tasks;
+using ChoETL;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using OLXFakedBackend.Contracts;
@@ -32,7 +33,7 @@ namespace OLXFakedBackend.Controllers
         {
             List<SuperCategory> superCategories = new List<SuperCategory>();
 
-            foreach(var category in await _repositoryWrapper.CategoryRepository.FindByCondition(cat => cat.ParentCategoryId == null))
+            foreach(var category in await _repositoryWrapper.CategoryRepository.FindByConditions(new List<System.Linq.Expressions.Expression<Func<Category, bool>>>() { cat => cat.ParentCategoryId == null }))
             {
                 superCategories.Add(new SuperCategory { CategoryId = category.CategoryId, Name = category.Name});
             }
@@ -40,7 +41,7 @@ namespace OLXFakedBackend.Controllers
             foreach(var superCategory in superCategories)
             {
                 superCategory.SubCategories = new List<CategoryApi>();
-                foreach(var subCategory in await _repositoryWrapper.CategoryRepository.FindByCondition(category => category.ParentCategoryId == superCategory.CategoryId)) {
+                foreach(var subCategory in await _repositoryWrapper.CategoryRepository.FindByConditions(new List<System.Linq.Expressions.Expression<Func<Category, bool>>>() { category => category.ParentCategoryId == superCategory.CategoryId })) {
                     superCategory.SubCategories.Add(new CategoryApi { CategoryId = subCategory.CategoryId, Name = subCategory.Name });
                 }
             }
@@ -51,19 +52,32 @@ namespace OLXFakedBackend.Controllers
 
         //items(items search endpoint - GET
         [HttpGet]
-        public async Task<ActionResult> GetAllItems(int pageSize = 50, int pageNum = 1)
+        public async Task<ActionResult> GetAllItems(int pageSize = 50, int pageNum = 1, string category=null, string cityPart=null)
         {
-            List<ItemApi> items = await _repositoryWrapper.ItemsViewRepository.FindAll();
-            var _paginator = new Paginator<ItemApi>(pageSize, items);
-            return Ok(new Items { page = pageNum, pages = _paginator.GetPagesNumber(), items = _paginator.Get(pageNum) });
+            List<ItemApi> items;
+            var _paginator = new Paginator<ItemApi>(pageSize);
+
+            List<System.Linq.Expressions.Expression<Func<ItemApi, bool>>> conditions = new List<System.Linq.Expressions.Expression<Func<ItemApi, bool>>>();
+
+            if (category != null) conditions.Add(c => c.category == category);
+            if (cityPart != null) conditions.Add(c => c.city.StartsWith(cityPart));
+
+            if (conditions.Count > 0) items = await _repositoryWrapper.ItemsViewRepository.FindByConditions(conditions, paginator: _paginator, pageNum: pageNum);
+            else items = await _repositoryWrapper.ItemsViewRepository.FindAll(paginator: _paginator, pageNum: pageNum);
+            
+            return Ok(new Items { page = pageNum, pages = _paginator.GetPagesNumber(), items = items });
         }
 
         //items/{item_id}(GET)
         [Route("{id}")]
         [HttpGet]
-        public string GetItemById(int id)
+        public async Task<ActionResult> GetItemById(int id)
         {
-            return $"this is item with id# {id}";
+            var result = await _repositoryWrapper.ItemsViewRepository.FindByConditions(new List<System.Linq.Expressions.Expression<Func<ItemApi, bool>>>() { it => it.itemId == id });
+            if (result.Count == 0) return Ok(null);
+            else if(result.Count > 1) return StatusCode(StatusCodes.Status500InternalServerError, "Server contains more then one item with the same ID");
+
+            return Ok(result[0]);
         }
 
 

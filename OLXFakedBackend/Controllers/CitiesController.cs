@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net.Mime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -30,20 +31,19 @@ namespace OLXFakedBackend.Controllers
         public async Task<ActionResult> GetAllCities(string namePart="", int pageSize=5, int pageNum=1)
         {
             List<City> resList;
+            var _paginator = new Paginator<City>(pageSize);
 
             if (namePart.Length > 0)
             {
 
-                resList = await _repositoryWrapper.CitiesRepository.FindByCondition(city => city.Name.StartsWith(namePart));
+                resList = await _repositoryWrapper.CitiesRepository.FindByConditions(new List<Expression<Func<City, bool>>>() { city => city.Name.StartsWith(namePart) }, paginator: _paginator, pageNum: pageNum);
 
             } else
             {
-                resList = await _repositoryWrapper.CitiesRepository.FindAll();
+                resList = await _repositoryWrapper.CitiesRepository.FindAll(paginator: _paginator, pageNum: pageNum);
             }
 
-            var _paginator = new Paginator<City>(pageSize, resList);
-
-            return Ok(new Cities { page=pageNum, pages=_paginator.GetPagesNumber(), cities = _paginator.Get(pageNum) });
+            return Ok(new Cities { page=pageNum, pages=_paginator.GetPagesNumber(), cities = resList });
         }
     }
 }

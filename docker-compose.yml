@@ -10,7 +10,7 @@ services:
       - 8080:80
       - 8443:443
   backend_db:
-    image: mcr.microsoft.com/mssql/server:2022-latest
+    image: mcr.microsoft.com/azure-sql-edge:1.0.6
     environment:
        MSSQL_SA_PASSWORD: test3210!
        ACCEPT_EULA: Y
