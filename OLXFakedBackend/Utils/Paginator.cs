@@ -49,22 +49,22 @@ namespace OLXFakedBackend.Utils
 
 			if (pageNum >= 0)
 			{
-				int cutOffValue = (Count - 1) - FinPosition;
-				if (StartPosition > (Count - 1)) return inQuery.Skip(Count);
-				else if (StartPosition == (Count - 1))
+				int cutOffValue = (Count) - FinPosition;
+				if (StartPosition > (Count)) return inQuery.Skip(Count);
+				else if (StartPosition == (Count))
 				{
-					return inQuery.Skip(StartPosition).Take(1);
+					return inQuery.Take(1);
 				}
 				else if (cutOffValue < 0)
 				{
-					int repairedFinPosition = FinPosition + cutOffValue - 1;
+					int repairedFinPosition = FinPosition + cutOffValue;
 
-					return (repairedFinPosition <= (Count - 1)) ? inQuery.Skip(StartPosition).Take((repairedFinPosition - StartPosition)) : inQuery.Skip(StartPosition).Take((Count - StartPosition));
+					return (repairedFinPosition <= (Count)) ? inQuery.Take((repairedFinPosition - StartPosition)).Skip(StartPosition) : inQuery.Take((Count - StartPosition)).Skip(StartPosition);
 				}
 			}
 
 
-			return inQuery.Skip(StartPosition).Take(FinPosition - StartPosition);
+			return inQuery.Take(FinPosition - StartPosition).Skip(StartPosition);
 
         }
 
