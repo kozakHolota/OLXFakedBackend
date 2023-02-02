@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace OLXFakedBackend.Utils
+﻿namespace OLXFakedBackend.Utils
 {
 	public class Paginator<T>
 	{
 		private int pageSize;
 
 		private int PageNum { get; set; }
-        IQueryable<T> inQuery;
+		IQueryable<T> InQuery { get; set; }
 
         private int StartPosition {
 			get
@@ -21,7 +18,7 @@ namespace OLXFakedBackend.Utils
 		{
 			get
 			{
-				return (inQuery == null) ? 0 : inQuery.Count();
+				return (InQuery == null) ? 0 : InQuery.Count();
             }
 		}
 
@@ -34,44 +31,43 @@ namespace OLXFakedBackend.Utils
 		}
 
 
-        public Paginator(int pageSize, IQueryable<T> inQuery = null)
+        public Paginator(int pageSize)
 		{
             this.pageSize = pageSize;
-			this.inQuery = inQuery;
         }
 
 		public IQueryable<T> Get(int pageNum, IQueryable<T> _inQuery=null)
 		{
 			PageNum = pageNum;
 
-			if (inQuery == null && _inQuery == null) throw new Exception("No Query to paginate");
-			else inQuery = _inQuery;
+			if (InQuery == null && _inQuery == null) throw new Exception("No Query to paginate");
+			else InQuery = _inQuery;
 
 			if (pageNum >= 0)
 			{
 				int cutOffValue = (Count) - FinPosition;
-				if (StartPosition > (Count)) return inQuery.Skip(Count);
+				if (StartPosition > (Count)) return InQuery.Skip(Count);
 				else if (StartPosition == (Count))
 				{
-					return inQuery.Take(1);
+					return InQuery.Take(1);
 				}
 				else if (cutOffValue < 0)
 				{
 					int repairedFinPosition = FinPosition + cutOffValue;
 
-					return (repairedFinPosition <= (Count)) ? inQuery.Take((repairedFinPosition - StartPosition)).Skip(StartPosition) : inQuery.Take((Count - StartPosition)).Skip(StartPosition);
+					return (repairedFinPosition <= (Count)) ? InQuery.Take((repairedFinPosition - StartPosition)).Skip(StartPosition) : InQuery.Take((Count - StartPosition)).Skip(StartPosition);
 				}
 			}
 
 
-			return inQuery.Take(FinPosition - StartPosition).Skip(StartPosition);
+			return InQuery.Take(FinPosition - StartPosition).Skip(StartPosition);
 
         }
 
 		public int GetPagesNumber(IQueryable<T> _inQuery = null)
 		{
-            if (inQuery == null && _inQuery == null) throw new Exception("No Query to paginate");
-            else if (inQuery == null && _inQuery != null) inQuery = _inQuery;
+            if (InQuery == null && _inQuery == null) throw new Exception("No Query to paginate");
+            else if (InQuery == null && _inQuery != null) InQuery = _inQuery;
 
             return pageSize > Count ? 1 : Count / pageSize;
 		}

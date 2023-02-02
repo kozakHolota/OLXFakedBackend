@@ -67,7 +67,13 @@ namespace OLXFakedBackend.Controllers
 
             if (category != null) conditions.Add(c => c.category == category);
             if (cityPart != null) conditions.Add(c => c.city.StartsWith(cityPart));
-            if (itemKeyword != null) conditions.Add(c=>c.name.Contains(itemKeyword) || c.description.Contains(itemKeyword));
+            if (itemKeyword != null) conditions.Add(
+                c=>c.name.Contains(itemKeyword)
+                || c.description.Contains(itemKeyword)
+                || c.subject.Contains(itemKeyword)
+                || c.category.Contains(itemKeyword)
+                || c.city.Contains(itemKeyword)
+                );
 
             if (conditions.Count > 0) items = await _repositoryWrapper.ItemsViewRepository.FindByConditions(conditions, paginator: _paginator, pageNum: pageNum);
             else items = await _repositoryWrapper.ItemsViewRepository.FindAll(paginator: _paginator, pageNum: pageNum);

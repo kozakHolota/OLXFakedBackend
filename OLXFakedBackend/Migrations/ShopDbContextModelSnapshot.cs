@@ -3404,6 +3404,29 @@ namespace OLXFakedBackend.Migrations
                     b.ToTable("ClientIdentity");
                 });
 
+            modelBuilder.Entity("OLXFakedBackend.Models.Db.ItemImage", b =>
+                {
+                    b.Property<int>("ItemImageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ItemImageId"));
+
+                    b.Property<int>("ImageId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ItemId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ItemImageId");
+
+                    b.HasIndex("ImageId");
+
+                    b.HasIndex("ItemId");
+
+                    b.ToTable("ItemImage");
+                });
+
             modelBuilder.Entity("OLXFakedBackend.Models.Db.RefreshToken", b =>
                 {
                     b.Property<int>("RefreshTokenId")
@@ -3475,10 +3498,11 @@ namespace OLXFakedBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ImageId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -3487,8 +3511,6 @@ namespace OLXFakedBackend.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("ContactDataId");
-
-                    b.HasIndex("ImageId");
 
                     b.ToTable("Item");
                 });
@@ -3612,6 +3634,25 @@ namespace OLXFakedBackend.Migrations
                     b.Navigation("City");
                 });
 
+            modelBuilder.Entity("OLXFakedBackend.Models.Db.ItemImage", b =>
+                {
+                    b.HasOne("OLXFakedBackend.Models.Image", "Image")
+                        .WithMany()
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OLXFakedBackend.Models.Item", "Item")
+                        .WithMany()
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Image");
+
+                    b.Navigation("Item");
+                });
+
             modelBuilder.Entity("OLXFakedBackend.Models.Item", b =>
                 {
                     b.HasOne("OLXFakedBackend.Models.Category", "Category")
@@ -3626,15 +3667,9 @@ namespace OLXFakedBackend.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OLXFakedBackend.Models.Image", "Image")
-                        .WithMany()
-                        .HasForeignKey("ImageId");
-
                     b.Navigation("Category");
 
                     b.Navigation("ContactData");
-
-                    b.Navigation("Image");
                 });
 
             modelBuilder.Entity("OLXFakedBackend.Models.Requisites", b =>
