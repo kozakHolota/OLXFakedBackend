@@ -20,16 +20,16 @@ namespace OLXFakedBackend.Repository
         {
             var query = ShopDbContext.Item
                 .Include(nameof(ShopDbContext.Category))
-                .Include(nameof(ShopDbContext.Image))
                 .Include(nameof(ShopDbContext.ContactData))
                 .Select(
                 itemsApi=> new ItemApi
                 {
                     itemId = itemsApi.ItemId,
                     name = itemsApi.Name,
+                    subject = itemsApi.Subject,
                     category = itemsApi.Category.Name,
                     description = itemsApi.Description,
-                    image = itemsApi.Image.Path,
+                    images = ShopDbContext.Set<Image>().AsNoTracking().Select(i=>i.Path).ToList(),
                     autoContinue = itemsApi.AutoContinue,
                     email = itemsApi.ContactData.Email,
                     phone = itemsApi.ContactData.Phone,

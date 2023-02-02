@@ -5,9 +5,10 @@ namespace OLXFakedBackend.Models.Api
     {
         public int itemId { get; set; }
         public string name { get; set; }
+        public string subject { get; set; }
         public string category { get; set; }
         public string description { get; set; }
-        public string? image { get; set; }
+        public List<string>? images { get; set; }
         public bool autoContinue { get; set; }
         public string email { get; set; }
         public string phone { get; set; }

@@ -17,6 +17,7 @@ namespace OLXFakedBackend.Models
         public DbSet<Category> Category { get; set; }
         public DbSet<ContactData> ContactData { get; set; }
         public DbSet<Item> Item { get; set; }
+        public DbSet<ItemImage> ItemImage { get; set; }
         public DbSet<UserItem> UserItem { get; set; }
         public DbSet<ClientIdentity> ClientIdentity { get; set; }
         public DbSet<RefreshToken> RefreshToken { get; set; }
