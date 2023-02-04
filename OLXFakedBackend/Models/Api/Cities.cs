@@ -5,7 +5,7 @@ namespace OLXFakedBackend.Models.Api
 	{
 		public int page { get; set; }
 		public int pages { get; set; }
-		public List<City> cities { get; set; }
+		public List<CityApi> cities { get; set; }
 	}
 }
 

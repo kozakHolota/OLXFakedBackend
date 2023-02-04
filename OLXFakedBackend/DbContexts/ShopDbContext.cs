@@ -11,6 +11,7 @@ namespace OLXFakedBackend.Models
     {
 		public DbSet<City> City { get; set; }
         public DbSet<ContactPerson> ContactPerson { get; set; }
+        public DbSet<District> District { get; set; }
         public DbSet<Requisites> Requisites { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<Image> Image { get; set; }
@@ -25,15 +26,38 @@ namespace OLXFakedBackend.Models
         public ShopDbContext(DbContextOptions options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
-            using (var reader = new ChoCSVReader<City>("DeploymentData/UkrainianCities.csv").Configure(c => c.IgnoreEmptyLine = true)
+            List<District> districts = new List<District>();
+            using (var districtReader = new ChoCSVReader<District>("DeploymentData/UkrainianDistricts.csv").Configure(c => c.IgnoreEmptyLine = true)
                 .Configure(c => c.Delimiter = ",")
                 .Configure(c => c.IgnoreEmptyLine = true)
-                .Configure(c => c.HasExcelSeparator = false).WithFirstLineHeader()) {
-                foreach (dynamic item in reader)
+                .Configure(c => c.HasExcelSeparator = false).Configure(c => c.QuoteAllFields = true).WithFirstLineHeader())
+            {
+                foreach (dynamic districtItem in districtReader)
                 {
-                    modelBuilder.Entity<City>().HasData(item);
+                    districts.Add(districtItem);
+                    modelBuilder.Entity<District>().HasData(districtItem);
                 }
             }
+
+            using (var cityReader = new ChoCSVReader("DeploymentData/UkrainianCities.csv").Configure(c => c.IgnoreEmptyLine = true)
+                .Configure(c => c.Delimiter = ",")
+                .Configure(c => c.IgnoreEmptyLine = true)
+                .Configure(c => c.HasExcelSeparator = false).Configure(c => c.QuoteAllFields = true).WithFirstLineHeader())
+            {
+                foreach (dynamic cityItem in cityReader)
+                {
+                    var district = districts.Select(dItem => dItem).Where(dItem => dItem.Name == cityItem["District"]).First();
+                    modelBuilder.Entity<City>().HasData(
+                        new City
+                        {
+                            CityId = int.Parse(cityItem["CityId"]),
+                            Name = cityItem["Name"],
+                            DistrictId = district.DistrictId
+                        }
+                     );
+                }
+            }
+
 
             using (var reader = new ChoCSVReader<Category>("DeploymentData/Categories.csv").Configure(c => c.IgnoreEmptyLine = true)
                 .Configure(c => c.Delimiter = ",")

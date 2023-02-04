@@ -73,6 +73,7 @@ namespace OLXFakedBackend.Controllers
                 || c.subject.Contains(itemKeyword)
                 || c.category.Contains(itemKeyword)
                 || c.city.Contains(itemKeyword)
+                || c.district.Contains(itemKeyword)
                 );
 
             if (conditions.Count > 0) items = await _repositoryWrapper.ItemsViewRepository.FindByConditions(conditions, paginator: _paginator, pageNum: pageNum);

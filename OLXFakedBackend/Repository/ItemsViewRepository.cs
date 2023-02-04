@@ -19,23 +19,26 @@ namespace OLXFakedBackend.Repository
         public async Task<IQueryable<ItemApi>> GetItemsQuery(List<System.Linq.Expressions.Expression<Func<ItemApi, bool>>> expressions = null)
         {
             var query = ShopDbContext.Item
-                .Include(nameof(ShopDbContext.Category))
-                .Include(nameof(ShopDbContext.ContactData))
+                .Include(c=>c.Category)
+                .Include(co=>co.ContactData)
+                .Include(cd=>cd.ContactData.City)
+                .Include(d=>d.ContactData.City.District)
                 .Select(
-                itemsApi=> new ItemApi
+                itemsApi => new ItemApi
                 {
                     itemId = itemsApi.ItemId,
                     name = itemsApi.Name,
                     subject = itemsApi.Subject,
                     category = itemsApi.Category.Name,
                     description = itemsApi.Description,
-                    images = ShopDbContext.Set<Image>().AsNoTracking().Select(i=>i.Path).ToList(),
+                    images = ShopDbContext.Set<Image>().AsNoTracking().Select(i => i.Path).ToList(),
                     autoContinue = itemsApi.AutoContinue,
                     email = itemsApi.ContactData.Email,
                     phone = itemsApi.ContactData.Phone,
-                    city = itemsApi.ContactData.City.Name
+                    city = itemsApi.ContactData.City.Name,
+                    district = itemsApi.ContactData.City.District.Name
                 }
-              );
+                );
 
             if (expressions != null)
             {

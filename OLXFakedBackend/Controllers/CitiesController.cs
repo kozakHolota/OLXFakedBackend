@@ -30,13 +30,13 @@ namespace OLXFakedBackend.Controllers
         [Route("all")]
         public async Task<ActionResult> GetAllCities(string namePart="", int pageSize=5, int pageNum=1)
         {
-            List<City> resList;
-            var _paginator = new Paginator<City>(pageSize);
+            List<CityApi> resList;
+            var _paginator = new Paginator<CityApi>(pageSize);
 
             if (namePart.Length > 0)
             {
 
-                resList = await _repositoryWrapper.CitiesRepository.FindByConditions(new List<Expression<Func<City, bool>>>() { city => city.Name.StartsWith(namePart) }, paginator: _paginator, pageNum: pageNum);
+                resList = await _repositoryWrapper.CitiesRepository.FindByConditions(new List<Expression<Func<CityApi, bool>>>() { city => city.name.StartsWith(namePart) }, paginator: _paginator, pageNum: pageNum);
 
             } else
             {

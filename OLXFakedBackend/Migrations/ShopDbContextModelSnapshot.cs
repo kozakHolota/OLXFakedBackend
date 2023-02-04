@@ -1007,11 +1007,16 @@ namespace OLXFakedBackend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CityId"));
 
+                    b.Property<int>("DistrictId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CityId");
+
+                    b.HasIndex("DistrictId");
 
                     b.ToTable("City");
 
@@ -1019,2306 +1024,2767 @@ namespace OLXFakedBackend.Migrations
                         new
                         {
                             CityId = 1,
+                            DistrictId = 16,
                             Name = "Авдіївка"
                         },
                         new
                         {
                             CityId = 2,
+                            DistrictId = 12,
                             Name = "Алмазна"
                         },
                         new
                         {
                             CityId = 3,
+                            DistrictId = 6,
                             Name = "Алупка"
                         },
                         new
                         {
                             CityId = 4,
+                            DistrictId = 6,
                             Name = "Алушта"
                         },
                         new
                         {
                             CityId = 5,
+                            DistrictId = 12,
                             Name = "Алчевськ"
                         },
                         new
                         {
                             CityId = 6,
+                            DistrictId = 16,
                             Name = "Амвросіївка"
                         },
                         new
                         {
                             CityId = 7,
+                            DistrictId = 23,
                             Name = "Ананьїв"
                         },
                         new
                         {
                             CityId = 8,
+                            DistrictId = 1,
                             Name = "Андрушівка"
                         },
                         new
                         {
                             CityId = 9,
-                            Name = "Антрацит"
+                            DistrictId = 12,
+                            Name = "Антрацит (місто)"
                         },
                         new
                         {
                             CityId = 10,
+                            DistrictId = 18,
                             Name = "Апостолове"
                         },
                         new
                         {
                             CityId = 11,
+                            DistrictId = 6,
                             Name = "Армянськ"
                         },
                         new
                         {
                             CityId = 12,
+                            DistrictId = 23,
                             Name = "Арциз"
                         },
                         new
                         {
                             CityId = 13,
+                            DistrictId = 7,
                             Name = "Балаклія"
                         },
                         new
                         {
                             CityId = 14,
+                            DistrictId = 23,
                             Name = "Балта"
                         },
                         new
                         {
                             CityId = 15,
-                            Name = "Бар"
+                            DistrictId = 8,
+                            Name = "Бар (місто)"
                         },
                         new
                         {
                             CityId = 16,
+                            DistrictId = 1,
                             Name = "Баранівка"
                         },
                         new
                         {
                             CityId = 17,
+                            DistrictId = 7,
                             Name = "Барвінкове"
                         },
                         new
                         {
                             CityId = 18,
+                            DistrictId = 24,
                             Name = "Батурин"
                         },
                         new
                         {
                             CityId = 19,
+                            DistrictId = 24,
                             Name = "Бахмач"
                         },
                         new
                         {
                             CityId = 20,
+                            DistrictId = 16,
                             Name = "Бахмут"
                         },
                         new
                         {
                             CityId = 21,
+                            DistrictId = 6,
                             Name = "Бахчисарай"
                         },
                         new
                         {
                             CityId = 22,
+                            DistrictId = 5,
                             Name = "Баштанка"
                         },
                         new
                         {
                             CityId = 23,
+                            DistrictId = 3,
                             Name = "Белз"
                         },
                         new
                         {
                             CityId = 24,
+                            DistrictId = 1,
                             Name = "Бердичів"
                         },
                         new
                         {
                             CityId = 25,
+                            DistrictId = 27,
                             Name = "Бердянськ"
                         },
                         new
                         {
                             CityId = 26,
+                            DistrictId = 4,
                             Name = "Берегове"
                         },
                         new
                         {
                             CityId = 27,
+                            DistrictId = 20,
                             Name = "Бережани"
                         },
                         new
                         {
                             CityId = 28,
-                            Name = "Березань"
+                            DistrictId = 26,
+                            Name = "Березань (місто)"
                         },
                         new
                         {
                             CityId = 29,
+                            DistrictId = 23,
                             Name = "Березівка"
                         },
                         new
                         {
                             CityId = 30,
+                            DistrictId = 11,
                             Name = "Березне"
                         },
                         new
                         {
                             CityId = 31,
+                            DistrictId = 14,
                             Name = "Берестечко"
                         },
                         new
                         {
                             CityId = 32,
+                            DistrictId = 10,
                             Name = "Берислав"
                         },
                         new
                         {
                             CityId = 33,
+                            DistrictId = 8,
                             Name = "Бершадь"
                         },
                         new
                         {
                             CityId = 34,
+                            DistrictId = 3,
                             Name = "Бібрка"
                         },
                         new
                         {
                             CityId = 35,
+                            DistrictId = 26,
                             Name = "Біла Церква"
                         },
                         new
                         {
                             CityId = 36,
+                            DistrictId = 23,
                             Name = "Білгород-Дністровський"
                         },
                         new
                         {
                             CityId = 37,
+                            DistrictId = 16,
                             Name = "Білицьке"
                         },
                         new
                         {
                             CityId = 38,
+                            DistrictId = 6,
                             Name = "Білогірськ"
                         },
                         new
                         {
                             CityId = 39,
+                            DistrictId = 16,
                             Name = "Білозерське"
                         },
                         new
                         {
                             CityId = 40,
+                            DistrictId = 25,
                             Name = "Білопілля"
                         },
                         new
                         {
                             CityId = 41,
+                            DistrictId = 23,
                             Name = "Біляївка"
                         },
                         new
                         {
                             CityId = 42,
+                            DistrictId = 19,
                             Name = "Благовіщенське"
                         },
                         new
                         {
                             CityId = 43,
+                            DistrictId = 19,
                             Name = "Бобринець"
                         },
                         new
                         {
                             CityId = 44,
+                            DistrictId = 24,
                             Name = "Бобровиця"
                         },
                         new
                         {
                             CityId = 45,
+                            DistrictId = 7,
                             Name = "Богодухів"
                         },
                         new
                         {
                             CityId = 46,
+                            DistrictId = 26,
                             Name = "Богуслав"
                         },
                         new
                         {
                             CityId = 47,
+                            DistrictId = 12,
                             Name = "Боково-Хрустальне"
                         },
                         new
                         {
                             CityId = 48,
+                            DistrictId = 23,
                             Name = "Болград"
                         },
                         new
                         {
                             CityId = 49,
+                            DistrictId = 17,
                             Name = "Болехів"
                         },
                         new
                         {
                             CityId = 50,
+                            DistrictId = 24,
                             Name = "Борзна"
                         },
                         new
                         {
                             CityId = 51,
+                            DistrictId = 3,
                             Name = "Борислав"
                         },
                         new
                         {
                             CityId = 52,
+                            DistrictId = 26,
                             Name = "Бориспіль"
                         },
                         new
                         {
                             CityId = 53,
+                            DistrictId = 20,
                             Name = "Борщів"
                         },
                         new
                         {
                             CityId = 54,
+                            DistrictId = 26,
                             Name = "Боярка"
                         },
                         new
                         {
                             CityId = 55,
+                            DistrictId = 26,
                             Name = "Бровари"
                         },
                         new
                         {
                             CityId = 56,
+                            DistrictId = 3,
                             Name = "Броди"
                         },
                         new
                         {
                             CityId = 57,
+                            DistrictId = 12,
                             Name = "Брянка"
                         },
                         new
                         {
                             CityId = 58,
-                            Name = "Бунге"
+                            DistrictId = 16,
+                            Name = "Бунге (місто)"
                         },
                         new
                         {
                             CityId = 59,
+                            DistrictId = 25,
                             Name = "Буринь"
                         },
                         new
                         {
                             CityId = 60,
-                            Name = "Бурштин"
+                            DistrictId = 17,
+                            Name = "Бурштин (місто)"
                         },
                         new
                         {
                             CityId = 61,
+                            DistrictId = 3,
                             Name = "Буськ"
                         },
                         new
                         {
                             CityId = 62,
+                            DistrictId = 26,
                             Name = "Буча"
                         },
                         new
                         {
                             CityId = 63,
+                            DistrictId = 20,
                             Name = "Бучач"
                         },
                         new
                         {
                             CityId = 64,
-                            Name = "Валки"
+                            DistrictId = 7,
+                            Name = "Валки (місто)"
                         },
                         new
                         {
                             CityId = 65,
+                            DistrictId = 11,
                             Name = "Вараш"
                         },
                         new
                         {
                             CityId = 66,
-                            Name = "Василівка"
+                            DistrictId = 27,
+                            Name = "Василівка (місто)"
                         },
                         new
                         {
                             CityId = 67,
+                            DistrictId = 26,
                             Name = "Васильків"
                         },
                         new
                         {
                             CityId = 68,
+                            DistrictId = 21,
                             Name = "Ватутіне"
                         },
                         new
                         {
                             CityId = 69,
+                            DistrictId = 9,
                             Name = "Вашківці"
                         },
                         new
                         {
                             CityId = 70,
+                            DistrictId = 3,
                             Name = "Великі Мости"
                         },
                         new
                         {
                             CityId = 71,
+                            DistrictId = 18,
                             Name = "Верхівцеве"
                         },
                         new
                         {
                             CityId = 72,
+                            DistrictId = 18,
                             Name = "Верхньодніпровськ"
                         },
                         new
                         {
                             CityId = 73,
+                            DistrictId = 9,
                             Name = "Вижниця"
                         },
                         new
                         {
                             CityId = 74,
+                            DistrictId = 23,
                             Name = "Вилкове"
                         },
                         new
                         {
                             CityId = 75,
+                            DistrictId = 3,
                             Name = "Винники"
                         },
                         new
                         {
                             CityId = 76,
+                            DistrictId = 4,
                             Name = "Виноградів"
                         },
                         new
                         {
                             CityId = 77,
+                            DistrictId = 26,
                             Name = "Вишгород"
                         },
                         new
                         {
                             CityId = 78,
-                            Name = "Вишневе"
+                            DistrictId = 26,
+                            Name = "Вишневе (місто)"
                         },
                         new
                         {
                             CityId = 79,
+                            DistrictId = 18,
                             Name = "Вільногірськ"
                         },
                         new
                         {
                             CityId = 80,
+                            DistrictId = 27,
                             Name = "Вільнянськ"
                         },
                         new
                         {
                             CityId = 81,
+                            DistrictId = 8,
                             Name = "Вінниця"
                         },
                         new
                         {
                             CityId = 82,
+                            DistrictId = 7,
                             Name = "Вовчанськ"
                         },
                         new
                         {
                             CityId = 83,
+                            DistrictId = 12,
                             Name = "Вознесенівка"
                         },
                         new
                         {
                             CityId = 84,
+                            DistrictId = 5,
                             Name = "Вознесенськ"
                         },
                         new
                         {
                             CityId = 85,
+                            DistrictId = 16,
                             Name = "Волноваха"
                         },
                         new
                         {
                             CityId = 86,
-                            Name = "Володимир"
+                            DistrictId = 14,
+                            Name = "Володимир (місто)"
                         },
                         new
                         {
                             CityId = 87,
+                            DistrictId = 22,
                             Name = "Волочиськ"
                         },
                         new
                         {
                             CityId = 88,
-                            Name = "Ворожба"
+                            DistrictId = 25,
+                            Name = "Ворожба (місто)"
                         },
                         new
                         {
                             CityId = 89,
+                            DistrictId = 16,
                             Name = "Вуглегірськ"
                         },
                         new
                         {
                             CityId = 90,
+                            DistrictId = 16,
                             Name = "Вугледар"
                         },
                         new
                         {
                             CityId = 91,
+                            DistrictId = 13,
                             Name = "Гадяч"
                         },
                         new
                         {
                             CityId = 92,
+                            DistrictId = 19,
                             Name = "Гайворон"
                         },
                         new
                         {
                             CityId = 93,
+                            DistrictId = 8,
                             Name = "Гайсин"
                         },
                         new
                         {
                             CityId = 94,
+                            DistrictId = 17,
                             Name = "Галич"
                         },
                         new
                         {
                             CityId = 95,
+                            DistrictId = 10,
                             Name = "Генічеськ"
                         },
                         new
                         {
                             CityId = 96,
+                            DistrictId = 9,
                             Name = "Герца"
                         },
                         new
                         {
                             CityId = 97,
-                            Name = "Гірник"
+                            DistrictId = 16,
+                            Name = "Гірник (місто)"
                         },
                         new
                         {
                             CityId = 98,
+                            DistrictId = 12,
                             Name = "Гірське"
                         },
                         new
                         {
                             CityId = 99,
+                            DistrictId = 3,
                             Name = "Глиняни"
                         },
                         new
                         {
                             CityId = 100,
+                            DistrictId = 13,
                             Name = "Глобине"
                         },
                         new
                         {
                             CityId = 101,
+                            DistrictId = 25,
                             Name = "Глухів"
                         },
                         new
                         {
                             CityId = 102,
+                            DistrictId = 8,
                             Name = "Гнівань"
                         },
                         new
                         {
                             CityId = 103,
+                            DistrictId = 10,
                             Name = "Гола Пристань"
                         },
                         new
                         {
                             CityId = 104,
+                            DistrictId = 12,
                             Name = "Голубівка"
                         },
                         new
                         {
                             CityId = 105,
+                            DistrictId = 13,
                             Name = "Горішні Плавні"
                         },
                         new
                         {
                             CityId = 106,
+                            DistrictId = 16,
                             Name = "Горлівка"
                         },
                         new
                         {
                             CityId = 107,
+                            DistrictId = 17,
                             Name = "Городенка"
                         },
                         new
                         {
                             CityId = 108,
-                            Name = "Городище"
+                            DistrictId = 21,
+                            Name = "Городище (Черкаська область)"
                         },
                         new
                         {
                             CityId = 109,
+                            DistrictId = 24,
                             Name = "Городня"
                         },
                         new
                         {
                             CityId = 110,
-                            Name = "Городок"
+                            DistrictId = 3,
+                            Name = "Городок (Львівська область)"
                         },
                         new
                         {
                             CityId = 111,
-                            Name = "Городок"
+                            DistrictId = 22,
+                            Name = "Городок (Хмельницька область)"
                         },
                         new
                         {
                             CityId = 112,
+                            DistrictId = 14,
                             Name = "Горохів"
                         },
                         new
                         {
                             CityId = 113,
+                            DistrictId = 13,
                             Name = "Гребінка"
                         },
                         new
                         {
                             CityId = 114,
+                            DistrictId = 27,
                             Name = "Гуляйполе"
                         },
                         new
                         {
                             CityId = 115,
+                            DistrictId = 16,
                             Name = "Дебальцеве"
                         },
                         new
                         {
                             CityId = 116,
+                            DistrictId = 22,
                             Name = "Деражня"
                         },
                         new
                         {
                             CityId = 117,
+                            DistrictId = 7,
                             Name = "Дергачі"
                         },
                         new
                         {
                             CityId = 118,
+                            DistrictId = 6,
                             Name = "Джанкой"
                         },
                         new
                         {
                             CityId = 119,
-                            Name = "Дніпро"
+                            DistrictId = 18,
+                            Name = "Дніпро (місто)"
                         },
                         new
                         {
                             CityId = 120,
+                            DistrictId = 27,
                             Name = "Дніпрорудне"
                         },
                         new
                         {
                             CityId = 121,
+                            DistrictId = 3,
                             Name = "Добромиль"
                         },
                         new
                         {
                             CityId = 122,
+                            DistrictId = 16,
                             Name = "Добропілля"
                         },
                         new
                         {
                             CityId = 123,
+                            DistrictId = 12,
                             Name = "Довжанськ"
                         },
                         new
                         {
                             CityId = 124,
+                            DistrictId = 16,
                             Name = "Докучаєвськ"
                         },
                         new
                         {
                             CityId = 125,
-                            Name = "Долина"
+                            DistrictId = 17,
+                            Name = "Долина (місто)"
                         },
                         new
                         {
                             CityId = 126,
+                            DistrictId = 19,
                             Name = "Долинська"
                         },
                         new
                         {
                             CityId = 127,
+                            DistrictId = 16,
                             Name = "Донецьк"
                         },
                         new
                         {
                             CityId = 128,
+                            DistrictId = 3,
                             Name = "Дрогобич"
                         },
                         new
                         {
                             CityId = 129,
-                            Name = "Дружба"
+                            DistrictId = 25,
+                            Name = "Дружба (місто)"
                         },
                         new
                         {
                             CityId = 130,
+                            DistrictId = 16,
                             Name = "Дружківка"
                         },
                         new
                         {
                             CityId = 131,
+                            DistrictId = 3,
                             Name = "Дубляни"
                         },
                         new
                         {
                             CityId = 132,
+                            DistrictId = 11,
                             Name = "Дубно"
                         },
                         new
                         {
                             CityId = 133,
+                            DistrictId = 11,
                             Name = "Дубровиця"
                         },
                         new
                         {
                             CityId = 134,
+                            DistrictId = 22,
                             Name = "Дунаївці"
                         },
                         new
                         {
                             CityId = 135,
+                            DistrictId = 27,
                             Name = "Енергодар"
                         },
                         new
                         {
                             CityId = 136,
+                            DistrictId = 6,
                             Name = "Євпаторія"
                         },
                         new
                         {
                             CityId = 137,
+                            DistrictId = 16,
                             Name = "Єнакієве"
                         },
                         new
                         {
                             CityId = 138,
+                            DistrictId = 21,
                             Name = "Жашків"
                         },
                         new
                         {
                             CityId = 139,
+                            DistrictId = 16,
                             Name = "Жданівка"
                         },
                         new
                         {
                             CityId = 140,
+                            DistrictId = 3,
                             Name = "Жидачів"
                         },
                         new
                         {
                             CityId = 141,
+                            DistrictId = 1,
                             Name = "Житомир"
                         },
                         new
                         {
                             CityId = 142,
+                            DistrictId = 8,
                             Name = "Жмеринка"
                         },
                         new
                         {
                             CityId = 143,
+                            DistrictId = 3,
                             Name = "Жовква"
                         },
                         new
                         {
                             CityId = 144,
+                            DistrictId = 18,
                             Name = "Жовті Води"
                         },
                         new
                         {
                             CityId = 145,
+                            DistrictId = 13,
                             Name = "Заводське"
                         },
                         new
                         {
                             CityId = 146,
+                            DistrictId = 16,
                             Name = "Залізне"
                         },
                         new
                         {
                             CityId = 147,
+                            DistrictId = 20,
                             Name = "Заліщики"
                         },
                         new
                         {
                             CityId = 148,
+                            DistrictId = 27,
                             Name = "Запоріжжя"
                         },
                         new
                         {
                             CityId = 149,
+                            DistrictId = 9,
                             Name = "Заставна"
                         },
                         new
                         {
                             CityId = 150,
+                            DistrictId = 20,
                             Name = "Збараж"
                         },
                         new
                         {
                             CityId = 151,
+                            DistrictId = 20,
                             Name = "Зборів"
                         },
                         new
                         {
                             CityId = 152,
+                            DistrictId = 21,
                             Name = "Звенигородка"
                         },
                         new
                         {
                             CityId = 153,
+                            DistrictId = 1,
                             Name = "Звягель"
                         },
                         new
                         {
                             CityId = 154,
+                            DistrictId = 11,
                             Name = "Здолбунів"
                         },
                         new
                         {
                             CityId = 155,
+                            DistrictId = 18,
                             Name = "Зеленодольськ"
                         },
                         new
                         {
                             CityId = 156,
+                            DistrictId = 12,
                             Name = "Зимогір'я"
                         },
                         new
                         {
                             CityId = 157,
+                            DistrictId = 13,
                             Name = "Зіньків"
                         },
                         new
                         {
                             CityId = 158,
+                            DistrictId = 7,
                             Name = "Зміїв"
                         },
                         new
                         {
                             CityId = 159,
+                            DistrictId = 19,
                             Name = "Знам'янка"
                         },
                         new
                         {
                             CityId = 160,
+                            DistrictId = 12,
                             Name = "Золоте"
                         },
                         new
                         {
                             CityId = 161,
+                            DistrictId = 21,
                             Name = "Золотоноша"
                         },
                         new
                         {
                             CityId = 162,
+                            DistrictId = 3,
                             Name = "Золочів"
                         },
                         new
                         {
                             CityId = 163,
-                            Name = "Зоринськ"
+                            DistrictId = 12,
+                            Name = "Зоринськ (Україна)"
                         },
                         new
                         {
                             CityId = 164,
+                            DistrictId = 16,
                             Name = "Зугрес"
                         },
                         new
                         {
                             CityId = 165,
+                            DistrictId = 17,
                             Name = "Івано-Франківськ"
                         },
                         new
                         {
                             CityId = 166,
+                            DistrictId = 23,
                             Name = "Ізмаїл"
                         },
                         new
                         {
                             CityId = 167,
+                            DistrictId = 7,
                             Name = "Ізюм"
                         },
                         new
                         {
                             CityId = 168,
+                            DistrictId = 22,
                             Name = "Ізяслав"
                         },
                         new
                         {
                             CityId = 169,
+                            DistrictId = 8,
                             Name = "Іллінці"
                         },
                         new
                         {
                             CityId = 170,
+                            DistrictId = 16,
                             Name = "Іловайськ"
                         },
                         new
                         {
                             CityId = 171,
+                            DistrictId = 2,
                             Name = "Інкерман"
                         },
                         new
                         {
                             CityId = 172,
+                            DistrictId = 12,
                             Name = "Ірміно"
                         },
                         new
                         {
                             CityId = 173,
+                            DistrictId = 26,
                             Name = "Ірпінь"
                         },
                         new
                         {
                             CityId = 174,
+                            DistrictId = 4,
                             Name = "Іршава"
                         },
                         new
                         {
                             CityId = 175,
+                            DistrictId = 24,
                             Name = "Ічня"
                         },
                         new
                         {
                             CityId = 176,
+                            DistrictId = 26,
                             Name = "Кагарлик"
                         },
                         new
                         {
                             CityId = 177,
+                            DistrictId = 12,
                             Name = "Кадіївка"
                         },
                         new
                         {
                             CityId = 178,
-                            Name = "Калинівка"
+                            DistrictId = 8,
+                            Name = "Калинівка (місто)"
                         },
                         new
                         {
                             CityId = 179,
+                            DistrictId = 17,
                             Name = "Калуш"
                         },
                         new
                         {
                             CityId = 180,
+                            DistrictId = 16,
                             Name = "Кальміуське"
                         },
                         new
                         {
                             CityId = 181,
+                            DistrictId = 14,
                             Name = "Камінь-Каширський"
                         },
                         new
                         {
                             CityId = 182,
+                            DistrictId = 22,
                             Name = "Кам'янець-Подільський"
                         },
                         new
                         {
                             CityId = 183,
-                            Name = "Кам'янка"
+                            DistrictId = 21,
+                            Name = "Кам'янка (Черкаська область)"
                         },
                         new
                         {
                             CityId = 184,
+                            DistrictId = 3,
                             Name = "Кам'янка-Бузька"
                         },
                         new
                         {
                             CityId = 185,
+                            DistrictId = 27,
                             Name = "Кам'янка-Дніпровська"
                         },
                         new
                         {
                             CityId = 186,
+                            DistrictId = 18,
                             Name = "Кам'янське"
                         },
                         new
                         {
                             CityId = 187,
+                            DistrictId = 21,
                             Name = "Канів"
                         },
                         new
                         {
                             CityId = 188,
+                            DistrictId = 13,
                             Name = "Карлівка"
                         },
                         new
                         {
                             CityId = 189,
+                            DistrictId = 10,
                             Name = "Каховка"
                         },
                         new
                         {
                             CityId = 190,
+                            DistrictId = 6,
                             Name = "Керч"
                         },
                         new
                         {
                             CityId = 191,
+                            DistrictId = 15,
                             Name = "Київ"
                         },
                         new
                         {
                             CityId = 192,
+                            DistrictId = 12,
                             Name = "Кипуче"
                         },
                         new
                         {
                             CityId = 193,
+                            DistrictId = 14,
                             Name = "Ківерці"
                         },
                         new
                         {
                             CityId = 194,
+                            DistrictId = 23,
                             Name = "Кілія"
                         },
                         new
                         {
                             CityId = 195,
+                            DistrictId = 9,
                             Name = "Кіцмань"
                         },
                         new
                         {
                             CityId = 196,
+                            DistrictId = 13,
                             Name = "Кобеляки"
                         },
                         new
                         {
                             CityId = 197,
+                            DistrictId = 14,
                             Name = "Ковель"
                         },
                         new
                         {
                             CityId = 198,
+                            DistrictId = 23,
                             Name = "Кодима"
                         },
                         new
                         {
                             CityId = 199,
+                            DistrictId = 8,
                             Name = "Козятин"
                         },
                         new
                         {
                             CityId = 200,
+                            DistrictId = 17,
                             Name = "Коломия"
                         },
                         new
                         {
                             CityId = 201,
+                            DistrictId = 3,
                             Name = "Комарно"
                         },
                         new
                         {
                             CityId = 202,
+                            DistrictId = 25,
                             Name = "Конотоп"
                         },
                         new
                         {
                             CityId = 203,
+                            DistrictId = 20,
                             Name = "Копичинці"
                         },
                         new
                         {
                             CityId = 204,
+                            DistrictId = 11,
                             Name = "Корець"
                         },
                         new
                         {
                             CityId = 205,
+                            DistrictId = 1,
                             Name = "Коростень"
                         },
                         new
                         {
                             CityId = 206,
+                            DistrictId = 1,
                             Name = "Коростишів"
                         },
                         new
                         {
                             CityId = 207,
+                            DistrictId = 21,
                             Name = "Корсунь-Шевченківський"
                         },
                         new
                         {
                             CityId = 208,
+                            DistrictId = 24,
                             Name = "Корюківка"
                         },
                         new
                         {
                             CityId = 209,
+                            DistrictId = 17,
                             Name = "Косів"
                         },
                         new
                         {
                             CityId = 210,
+                            DistrictId = 11,
                             Name = "Костопіль"
                         },
                         new
                         {
                             CityId = 211,
+                            DistrictId = 16,
                             Name = "Костянтинівка"
                         },
                         new
                         {
                             CityId = 212,
+                            DistrictId = 16,
                             Name = "Краматорськ"
                         },
                         new
                         {
                             CityId = 213,
+                            DistrictId = 22,
                             Name = "Красилів"
                         },
                         new
                         {
                             CityId = 214,
+                            DistrictId = 16,
                             Name = "Красногорівка"
                         },
                         new
                         {
                             CityId = 215,
+                            DistrictId = 7,
                             Name = "Красноград"
                         },
                         new
                         {
                             CityId = 216,
-                            Name = "Красноперекопськ (Яни Капу)"
+                            DistrictId = 6,
+                            Name = "Красноперекопськ"
                         },
                         new
                         {
                             CityId = 217,
+                            DistrictId = 20,
                             Name = "Кременець"
                         },
                         new
                         {
                             CityId = 218,
+                            DistrictId = 13,
                             Name = "Кременчук"
                         },
                         new
                         {
                             CityId = 219,
+                            DistrictId = 12,
                             Name = "Кремінна"
                         },
                         new
                         {
                             CityId = 220,
+                            DistrictId = 18,
                             Name = "Кривий Ріг"
                         },
                         new
                         {
                             CityId = 221,
+                            DistrictId = 25,
                             Name = "Кролевець"
                         },
                         new
                         {
                             CityId = 222,
+                            DistrictId = 19,
                             Name = "Кропивницький"
                         },
                         new
                         {
                             CityId = 223,
+                            DistrictId = 7,
                             Name = "Куп'янськ"
                         },
                         new
                         {
                             CityId = 224,
+                            DistrictId = 16,
                             Name = "Курахове"
                         },
                         new
                         {
                             CityId = 225,
+                            DistrictId = 8,
                             Name = "Ладижин"
                         },
                         new
                         {
                             CityId = 226,
+                            DistrictId = 20,
                             Name = "Ланівці"
                         },
                         new
                         {
                             CityId = 227,
+                            DistrictId = 25,
                             Name = "Лебедин"
                         },
                         new
                         {
                             CityId = 228,
-                            Name = "Лиман"
+                            DistrictId = 16,
+                            Name = "Лиман (місто)"
                         },
                         new
                         {
                             CityId = 229,
+                            DistrictId = 8,
                             Name = "Липовець"
                         },
                         new
                         {
                             CityId = 230,
+                            DistrictId = 12,
                             Name = "Лисичанськ"
                         },
                         new
                         {
                             CityId = 231,
-                            Name = "Лозова"
+                            DistrictId = 7,
+                            Name = "Лозова (місто)"
                         },
                         new
                         {
                             CityId = 232,
+                            DistrictId = 13,
                             Name = "Лохвиця"
                         },
                         new
                         {
                             CityId = 233,
+                            DistrictId = 13,
                             Name = "Лубни"
                         },
                         new
                         {
                             CityId = 234,
+                            DistrictId = 12,
                             Name = "Луганськ"
                         },
                         new
                         {
                             CityId = 235,
+                            DistrictId = 12,
                             Name = "Лутугине"
                         },
                         new
                         {
                             CityId = 236,
+                            DistrictId = 14,
                             Name = "Луцьк"
                         },
                         new
                         {
                             CityId = 237,
+                            DistrictId = 3,
                             Name = "Львів"
                         },
                         new
                         {
                             CityId = 238,
+                            DistrictId = 14,
                             Name = "Любомль"
                         },
                         new
                         {
                             CityId = 239,
+                            DistrictId = 7,
                             Name = "Люботин"
                         },
                         new
                         {
                             CityId = 240,
+                            DistrictId = 16,
                             Name = "Макіївка"
                         },
                         new
                         {
                             CityId = 241,
+                            DistrictId = 19,
                             Name = "Мала Виска"
                         },
                         new
                         {
                             CityId = 242,
+                            DistrictId = 1,
                             Name = "Малин"
                         },
                         new
                         {
                             CityId = 243,
-                            Name = "Марганець"
+                            DistrictId = 18,
+                            Name = "Марганець (місто)"
                         },
                         new
                         {
                             CityId = 244,
+                            DistrictId = 16,
                             Name = "Маріуполь"
                         },
                         new
                         {
                             CityId = 245,
+                            DistrictId = 16,
                             Name = "Мар'їнка"
                         },
                         new
                         {
                             CityId = 246,
+                            DistrictId = 27,
                             Name = "Мелітополь"
                         },
                         new
                         {
                             CityId = 247,
-                            Name = "Мена"
+                            DistrictId = 24,
+                            Name = "Мена (місто)"
                         },
                         new
                         {
                             CityId = 248,
+                            DistrictId = 7,
                             Name = "Мерефа"
                         },
                         new
                         {
                             CityId = 249,
-                            Name = "Миколаїв"
+                            DistrictId = 3,
+                            Name = "Миколаїв (Львівська область)"
                         },
                         new
                         {
                             CityId = 250,
+                            DistrictId = 5,
                             Name = "Миколаїв"
                         },
                         new
                         {
                             CityId = 251,
-                            Name = "Миколаївка"
+                            DistrictId = 16,
+                            Name = "Миколаївка (місто)"
                         },
                         new
                         {
                             CityId = 252,
+                            DistrictId = 13,
                             Name = "Миргород"
                         },
                         new
                         {
                             CityId = 253,
+                            DistrictId = 16,
                             Name = "Мирноград"
                         },
                         new
                         {
                             CityId = 254,
+                            DistrictId = 26,
                             Name = "Миронівка"
                         },
                         new
                         {
                             CityId = 255,
+                            DistrictId = 12,
                             Name = "Міусинськ"
                         },
                         new
                         {
                             CityId = 256,
+                            DistrictId = 8,
                             Name = "Могилів-Подільський"
                         },
                         new
                         {
                             CityId = 257,
+                            DistrictId = 12,
                             Name = "Молодогвардійськ"
                         },
                         new
                         {
                             CityId = 258,
+                            DistrictId = 27,
                             Name = "Молочанськ"
                         },
                         new
                         {
                             CityId = 259,
+                            DistrictId = 20,
                             Name = "Монастириська"
                         },
                         new
                         {
                             CityId = 260,
+                            DistrictId = 21,
                             Name = "Монастирище"
                         },
                         new
                         {
                             CityId = 261,
+                            DistrictId = 3,
                             Name = "Моршин"
                         },
                         new
                         {
                             CityId = 262,
+                            DistrictId = 16,
                             Name = "Моспине"
                         },
                         new
                         {
                             CityId = 263,
+                            DistrictId = 3,
                             Name = "Мостиська"
                         },
                         new
                         {
                             CityId = 264,
+                            DistrictId = 4,
                             Name = "Мукачево"
                         },
                         new
                         {
                             CityId = 265,
+                            DistrictId = 17,
                             Name = "Надвірна"
                         },
                         new
                         {
                             CityId = 266,
+                            DistrictId = 8,
                             Name = "Немирів"
                         },
                         new
                         {
                             CityId = 267,
+                            DistrictId = 22,
                             Name = "Нетішин"
                         },
                         new
                         {
                             CityId = 268,
+                            DistrictId = 24,
                             Name = "Ніжин"
                         },
                         new
                         {
                             CityId = 269,
+                            DistrictId = 18,
                             Name = "Нікополь"
                         },
                         new
                         {
                             CityId = 270,
+                            DistrictId = 10,
                             Name = "Нова Каховка"
                         },
                         new
                         {
                             CityId = 271,
+                            DistrictId = 5,
                             Name = "Нова Одеса"
                         },
                         new
                         {
                             CityId = 272,
+                            DistrictId = 24,
                             Name = "Новгород-Сіверський"
                         },
                         new
                         {
                             CityId = 273,
+                            DistrictId = 5,
                             Name = "Новий Буг"
                         },
                         new
                         {
                             CityId = 274,
+                            DistrictId = 3,
                             Name = "Новий Калинів"
                         },
                         new
                         {
                             CityId = 275,
+                            DistrictId = 3,
                             Name = "Новий Розділ"
                         },
                         new
                         {
                             CityId = 276,
+                            DistrictId = 16,
                             Name = "Новоазовськ"
                         },
                         new
                         {
                             CityId = 277,
+                            DistrictId = 14,
                             Name = "Нововолинськ"
                         },
                         new
                         {
                             CityId = 278,
+                            DistrictId = 16,
                             Name = "Новогродівка"
                         },
                         new
                         {
                             CityId = 279,
+                            DistrictId = 9,
                             Name = "Новодністровськ"
                         },
                         new
                         {
                             CityId = 280,
+                            DistrictId = 12,
                             Name = "Новодружеськ"
                         },
                         new
                         {
                             CityId = 281,
+                            DistrictId = 19,
                             Name = "Новомиргород"
                         },
                         new
                         {
                             CityId = 282,
+                            DistrictId = 18,
                             Name = "Новомосковськ"
                         },
                         new
                         {
                             CityId = 283,
+                            DistrictId = 9,
                             Name = "Новоселиця"
                         },
                         new
                         {
                             CityId = 284,
+                            DistrictId = 19,
                             Name = "Новоукраїнка"
                         },
                         new
                         {
                             CityId = 285,
+                            DistrictId = 3,
                             Name = "Новояворівськ"
                         },
                         new
                         {
                             CityId = 286,
+                            DistrictId = 24,
                             Name = "Носівка"
                         },
                         new
                         {
                             CityId = 287,
+                            DistrictId = 26,
                             Name = "Обухів"
                         },
                         new
                         {
                             CityId = 288,
+                            DistrictId = 1,
                             Name = "Овруч"
                         },
                         new
                         {
                             CityId = 289,
+                            DistrictId = 23,
                             Name = "Одеса"
                         },
                         new
                         {
                             CityId = 290,
+                            DistrictId = 1,
                             Name = "Олевськ"
                         },
                         new
                         {
                             CityId = 291,
+                            DistrictId = 12,
                             Name = "Олександрівськ"
                         },
                         new
                         {
                             CityId = 292,
+                            DistrictId = 19,
                             Name = "Олександрія"
                         },
                         new
                         {
                             CityId = 293,
+                            DistrictId = 10,
                             Name = "Олешки"
                         },
                         new
                         {
                             CityId = 294,
+                            DistrictId = 27,
                             Name = "Оріхів"
                         },
                         new
                         {
                             CityId = 295,
-                            Name = "Остер"
+                            DistrictId = 24,
+                            Name = "Остер (місто)"
                         },
                         new
                         {
                             CityId = 296,
+                            DistrictId = 11,
                             Name = "Острог"
                         },
                         new
                         {
                             CityId = 297,
+                            DistrictId = 25,
                             Name = "Охтирка"
                         },
                         new
                         {
                             CityId = 298,
+                            DistrictId = 5,
                             Name = "Очаків"
                         },
                         new
                         {
                             CityId = 299,
+                            DistrictId = 18,
                             Name = "Павлоград"
                         },
                         new
                         {
                             CityId = 300,
-                            Name = "Первомайськ"
+                            DistrictId = 12,
+                            Name = "Первомайськ (Луганська область)"
                         },
                         new
                         {
                             CityId = 301,
-                            Name = "Первомайськ"
+                            DistrictId = 5,
+                            Name = "Первомайськ (Миколаївська область)"
                         },
                         new
                         {
                             CityId = 302,
-                            Name = "Первомайський"
+                            DistrictId = 7,
+                            Name = "Первомайський (місто)"
                         },
                         new
                         {
                             CityId = 303,
+                            DistrictId = 12,
                             Name = "Перевальськ"
                         },
                         new
                         {
                             CityId = 304,
+                            DistrictId = 3,
                             Name = "Перемишляни"
                         },
                         new
                         {
                             CityId = 305,
+                            DistrictId = 4,
                             Name = "Перечин"
                         },
                         new
                         {
                             CityId = 306,
+                            DistrictId = 18,
                             Name = "Перещепине"
                         },
                         new
                         {
                             CityId = 307,
+                            DistrictId = 26,
                             Name = "Переяслав"
                         },
                         new
                         {
                             CityId = 308,
+                            DistrictId = 18,
                             Name = "Першотравенськ"
                         },
                         new
                         {
                             CityId = 309,
+                            DistrictId = 12,
                             Name = "Петрово-Красносілля"
                         },
                         new
                         {
                             CityId = 310,
+                            DistrictId = 13,
                             Name = "Пирятин"
                         },
                         new
                         {
                             CityId = 311,
-                            Name = "Південне"
+                            DistrictId = 7,
+                            Name = "Південне (місто)"
                         },
                         new
                         {
                             CityId = 312,
+                            DistrictId = 20,
                             Name = "Підгайці"
                         },
                         new
                         {
                             CityId = 313,
+                            DistrictId = 18,
                             Name = "Підгородне"
                         },
                         new
                         {
                             CityId = 314,
+                            DistrictId = 8,
                             Name = "Погребище"
                         },
                         new
                         {
                             CityId = 315,
+                            DistrictId = 23,
                             Name = "Подільськ"
                         },
                         new
                         {
                             CityId = 316,
+                            DistrictId = 18,
                             Name = "Покров"
                         },
                         new
                         {
                             CityId = 317,
+                            DistrictId = 16,
                             Name = "Покровськ"
                         },
                         new
                         {
                             CityId = 318,
-                            Name = "Пологи"
+                            DistrictId = 27,
+                            Name = "Пологи (місто)"
                         },
                         new
                         {
                             CityId = 319,
+                            DistrictId = 22,
                             Name = "Полонне"
                         },
                         new
                         {
                             CityId = 320,
+                            DistrictId = 13,
                             Name = "Полтава"
                         },
                         new
                         {
                             CityId = 321,
+                            DistrictId = 19,
                             Name = "Помічна"
                         },
                         new
                         {
                             CityId = 322,
+                            DistrictId = 12,
                             Name = "Попасна"
                         },
                         new
                         {
                             CityId = 323,
+                            DistrictId = 20,
                             Name = "Почаїв"
                         },
                         new
                         {
                             CityId = 324,
+                            DistrictId = 12,
                             Name = "Привілля"
                         },
                         new
                         {
                             CityId = 325,
+                            DistrictId = 24,
                             Name = "Прилуки"
                         },
                         new
                         {
                             CityId = 326,
-                            Name = "Приморськ"
+                            DistrictId = 27,
+                            Name = "Приморськ (Україна)"
                         },
                         new
                         {
                             CityId = 327,
-                            Name = "Прип'ять"
+                            DistrictId = 26,
+                            Name = "Прип'ять (місто)"
                         },
                         new
                         {
                             CityId = 328,
+                            DistrictId = 3,
                             Name = "Пустомити"
                         },
                         new
                         {
                             CityId = 329,
+                            DistrictId = 25,
                             Name = "Путивль"
                         },
                         new
                         {
                             CityId = 330,
+                            DistrictId = 18,
                             Name = "П'ятихатки"
                         },
                         new
                         {
                             CityId = 331,
+                            DistrictId = 3,
                             Name = "Рава-Руська"
                         },
                         new
                         {
                             CityId = 332,
+                            DistrictId = 3,
                             Name = "Радехів"
                         },
                         new
                         {
                             CityId = 333,
+                            DistrictId = 11,
                             Name = "Радивилів"
                         },
                         new
                         {
                             CityId = 334,
+                            DistrictId = 1,
                             Name = "Радомишль"
                         },
                         new
                         {
                             CityId = 335,
+                            DistrictId = 4,
                             Name = "Рахів"
                         },
                         new
                         {
                             CityId = 336,
+                            DistrictId = 23,
                             Name = "Рені"
                         },
                         new
                         {
                             CityId = 337,
+                            DistrictId = 13,
                             Name = "Решетилівка"
                         },
                         new
                         {
                             CityId = 338,
+                            DistrictId = 26,
                             Name = "Ржищів"
                         },
                         new
                         {
                             CityId = 339,
+                            DistrictId = 11,
                             Name = "Рівне"
                         },
                         new
                         {
                             CityId = 340,
+                            DistrictId = 12,
                             Name = "Ровеньки"
                         },
                         new
                         {
                             CityId = 341,
+                            DistrictId = 17,
                             Name = "Рогатин"
                         },
                         new
                         {
                             CityId = 342,
+                            DistrictId = 16,
                             Name = "Родинське"
                         },
                         new
                         {
                             CityId = 343,
+                            DistrictId = 14,
                             Name = "Рожище"
                         },
                         new
                         {
                             CityId = 344,
+                            DistrictId = 23,
                             Name = "Роздільна"
                         },
                         new
                         {
                             CityId = 345,
+                            DistrictId = 25,
                             Name = "Ромни"
                         },
                         new
                         {
                             CityId = 346,
+                            DistrictId = 12,
                             Name = "Рубіжне"
                         },
                         new
                         {
                             CityId = 347,
+                            DistrictId = 3,
                             Name = "Рудки"
                         },
                         new
                         {
                             CityId = 348,
-                            Name = "Саки"
+                            DistrictId = 6,
+                            Name = "Саки (місто)"
                         },
                         new
                         {
                             CityId = 349,
+                            DistrictId = 3,
                             Name = "Самбір"
                         },
                         new
                         {
                             CityId = 350,
+                            DistrictId = 11,
                             Name = "Сарни"
                         },
                         new
                         {
                             CityId = 351,
+                            DistrictId = 4,
                             Name = "Свалява"
                         },
                         new
                         {
                             CityId = 352,
+                            DistrictId = 12,
                             Name = "Сватове"
                         },
                         new
                         {
                             CityId = 353,
+                            DistrictId = 19,
                             Name = "Світловодськ"
                         },
                         new
                         {
                             CityId = 354,
+                            DistrictId = 16,
                             Name = "Світлодарськ"
                         },
                         new
                         {
                             CityId = 355,
+                            DistrictId = 16,
                             Name = "Святогірськ"
                         },
                         new
                         {
                             CityId = 356,
+                            DistrictId = 2,
                             Name = "Севастополь"
                         },
                         new
                         {
                             CityId = 357,
+                            DistrictId = 16,
                             Name = "Селидове"
                         },
                         new
                         {
                             CityId = 358,
+                            DistrictId = 24,
                             Name = "Семенівка"
                         },
                         new
                         {
                             CityId = 359,
+                            DistrictId = 25,
                             Name = "Середина-Буда"
                         },
                         new
                         {
                             CityId = 360,
+                            DistrictId = 12,
                             Name = "Сєвєродонецьк"
                         },
                         new
                         {
                             CityId = 361,
+                            DistrictId = 18,
                             Name = "Синельникове"
                         },
                         new
                         {
                             CityId = 362,
+                            DistrictId = 16,
                             Name = "Сіверськ"
                         },
                         new
                         {
                             CityId = 363,
+                            DistrictId = 6,
                             Name = "Сімферополь"
                         },
                         new
                         {
                             CityId = 364,
+                            DistrictId = 10,
                             Name = "Скадовськ"
                         },
                         new
                         {
                             CityId = 365,
+                            DistrictId = 20,
                             Name = "Скалат"
                         },
                         new
                         {
                             CityId = 366,
+                            DistrictId = 26,
                             Name = "Сквира"
                         },
                         new
                         {
                             CityId = 367,
+                            DistrictId = 3,
                             Name = "Сколе"
                         },
                         new
                         {
                             CityId = 368,
+                            DistrictId = 22,
                             Name = "Славута"
                         },
                         new
                         {
                             CityId = 369,
+                            DistrictId = 26,
                             Name = "Славутич"
                         },
                         new
                         {
                             CityId = 370,
+                            DistrictId = 16,
                             Name = "Слов'янськ"
                         },
                         new
                         {
                             CityId = 371,
+                            DistrictId = 21,
                             Name = "Сміла"
                         },
                         new
                         {
                             CityId = 372,
+                            DistrictId = 5,
                             Name = "Снігурівка"
                         },
                         new
                         {
                             CityId = 373,
+                            DistrictId = 16,
                             Name = "Сніжне"
                         },
                         new
                         {
                             CityId = 374,
+                            DistrictId = 24,
                             Name = "Сновськ"
                         },
                         new
                         {
                             CityId = 375,
+                            DistrictId = 17,
                             Name = "Снятин"
                         },
                         new
                         {
                             CityId = 376,
+                            DistrictId = 3,
                             Name = "Сокаль"
                         },
                         new
                         {
                             CityId = 377,
+                            DistrictId = 9,
                             Name = "Сокиряни"
                         },
                         new
                         {
                             CityId = 378,
+                            DistrictId = 16,
                             Name = "Соледар"
                         },
                         new
                         {
                             CityId = 379,
+                            DistrictId = 12,
                             Name = "Сорокине"
                         },
                         new
                         {
                             CityId = 380,
-                            Name = "Соснівка"
+                            DistrictId = 3,
+                            Name = "Соснівка (місто)"
                         },
                         new
                         {
                             CityId = 381,
+                            DistrictId = 6,
                             Name = "Старий Крим"
                         },
                         new
                         {
                             CityId = 382,
+                            DistrictId = 3,
                             Name = "Старий Самбір"
                         },
                         new
                         {
                             CityId = 383,
+                            DistrictId = 12,
                             Name = "Старобільськ"
                         },
                         new
                         {
                             CityId = 384,
+                            DistrictId = 22,
                             Name = "Старокостянтинів"
                         },
                         new
                         {
                             CityId = 385,
+                            DistrictId = 3,
                             Name = "Стебник"
                         },
                         new
                         {
                             CityId = 386,
+                            DistrictId = 9,
                             Name = "Сторожинець"
                         },
                         new
                         {
                             CityId = 387,
+                            DistrictId = 3,
                             Name = "Стрий"
                         },
                         new
                         {
                             CityId = 388,
-                            Name = "Судак"
+                            DistrictId = 6,
+                            Name = "Судак (місто)"
                         },
                         new
                         {
                             CityId = 389,
+                            DistrictId = 3,
                             Name = "Судова Вишня"
                         },
                         new
                         {
                             CityId = 390,
+                            DistrictId = 25,
                             Name = "Суми"
                         },
                         new
                         {
                             CityId = 391,
+                            DistrictId = 12,
                             Name = "Суходільськ"
                         },
                         new
                         {
                             CityId = 392,
+                            DistrictId = 10,
                             Name = "Таврійськ"
                         },
                         new
                         {
                             CityId = 393,
+                            DistrictId = 21,
                             Name = "Тальне"
                         },
                         new
                         {
                             CityId = 394,
+                            DistrictId = 26,
                             Name = "Тараща"
                         },
                         new
                         {
                             CityId = 395,
+                            DistrictId = 23,
                             Name = "Татарбунари"
                         },
                         new
                         {
                             CityId = 396,
+                            DistrictId = 23,
                             Name = "Теплодар"
                         },
                         new
                         {
                             CityId = 397,
+                            DistrictId = 20,
                             Name = "Теребовля"
                         },
                         new
                         {
                             CityId = 398,
-                            Name = "Тернівка"
+                            DistrictId = 18,
+                            Name = "Тернівка (місто)"
                         },
                         new
                         {
                             CityId = 399,
+                            DistrictId = 20,
                             Name = "Тернопіль"
                         },
                         new
                         {
                             CityId = 400,
+                            DistrictId = 26,
                             Name = "Тетіїв"
                         },
                         new
                         {
                             CityId = 401,
-                            Name = "Тисмениця"
+                            DistrictId = 17,
+                            Name = "Тисмениця (місто)"
                         },
                         new
                         {
                             CityId = 402,
+                            DistrictId = 17,
                             Name = "Тлумач"
                         },
                         new
                         {
                             CityId = 403,
+                            DistrictId = 27,
                             Name = "Токмак"
                         },
                         new
                         {
                             CityId = 404,
+                            DistrictId = 16,
                             Name = "Торецьк"
                         },
                         new
                         {
                             CityId = 405,
+                            DistrictId = 25,
                             Name = "Тростянець"
                         },
                         new
                         {
                             CityId = 406,
+                            DistrictId = 3,
                             Name = "Трускавець"
                         },
                         new
                         {
                             CityId = 407,
+                            DistrictId = 8,
                             Name = "Тульчин"
                         },
                         new
                         {
                             CityId = 408,
+                            DistrictId = 3,
                             Name = "Турка"
                         },
                         new
                         {
                             CityId = 409,
+                            DistrictId = 4,
                             Name = "Тячів"
                         },
                         new
                         {
                             CityId = 410,
+                            DistrictId = 3,
                             Name = "Угнів"
                         },
                         new
                         {
                             CityId = 411,
+                            DistrictId = 4,
                             Name = "Ужгород"
                         },
                         new
                         {
                             CityId = 412,
+                            DistrictId = 26,
                             Name = "Узин"
                         },
                         new
                         {
                             CityId = 413,
-                            Name = "Українка"
+                            DistrictId = 26,
+                            Name = "Українка (місто)"
                         },
                         new
                         {
                             CityId = 414,
+                            DistrictId = 16,
                             Name = "Українськ"
                         },
                         new
                         {
                             CityId = 415,
+                            DistrictId = 21,
                             Name = "Умань"
                         },
                         new
                         {
                             CityId = 416,
+                            DistrictId = 14,
                             Name = "Устилуг"
                         },
                         new
                         {
                             CityId = 417,
+                            DistrictId = 26,
                             Name = "Фастів"
                         },
                         new
                         {
                             CityId = 418,
+                            DistrictId = 6,
                             Name = "Феодосія"
                         },
                         new
                         {
                             CityId = 419,
+                            DistrictId = 7,
                             Name = "Харків"
                         },
                         new
                         {
                             CityId = 420,
+                            DistrictId = 16,
                             Name = "Харцизьк"
                         },
                         new
                         {
                             CityId = 421,
+                            DistrictId = 10,
                             Name = "Херсон"
                         },
                         new
                         {
                             CityId = 422,
+                            DistrictId = 3,
                             Name = "Хирів"
                         },
                         new
                         {
                             CityId = 423,
+                            DistrictId = 22,
                             Name = "Хмельницький"
                         },
                         new
                         {
                             CityId = 424,
+                            DistrictId = 8,
                             Name = "Хмільник"
                         },
                         new
                         {
                             CityId = 425,
+                            DistrictId = 3,
                             Name = "Ходорів"
                         },
                         new
                         {
                             CityId = 426,
-                            Name = "Хорол"
+                            DistrictId = 13,
+                            Name = "Хорол (місто)"
                         },
                         new
                         {
                             CityId = 427,
+                            DistrictId = 20,
                             Name = "Хоростків"
                         },
                         new
                         {
                             CityId = 428,
+                            DistrictId = 9,
                             Name = "Хотин"
                         },
                         new
                         {
                             CityId = 429,
+                            DistrictId = 16,
                             Name = "Хрестівка"
                         },
                         new
                         {
                             CityId = 430,
+                            DistrictId = 21,
                             Name = "Христинівка"
                         },
                         new
                         {
                             CityId = 431,
+                            DistrictId = 12,
                             Name = "Хрустальний"
                         },
                         new
                         {
                             CityId = 432,
+                            DistrictId = 4,
                             Name = "Хуст"
                         },
                         new
                         {
                             CityId = 433,
+                            DistrictId = 16,
                             Name = "Часів Яр"
                         },
                         new
                         {
                             CityId = 434,
+                            DistrictId = 3,
                             Name = "Червоноград"
                         },
                         new
                         {
                             CityId = 435,
+                            DistrictId = 21,
                             Name = "Черкаси"
                         },
                         new
                         {
                             CityId = 436,
+                            DistrictId = 9,
                             Name = "Чернівці"
                         },
                         new
                         {
                             CityId = 437,
+                            DistrictId = 24,
                             Name = "Чернігів"
                         },
                         new
                         {
                             CityId = 438,
+                            DistrictId = 21,
                             Name = "Чигирин"
                         },
                         new
                         {
                             CityId = 439,
+                            DistrictId = 16,
                             Name = "Чистякове"
                         },
                         new
                         {
                             CityId = 440,
+                            DistrictId = 4,
                             Name = "Чоп"
                         },
                         new
                         {
                             CityId = 441,
+                            DistrictId = 26,
                             Name = "Чорнобиль"
                         },
                         new
                         {
                             CityId = 442,
+                            DistrictId = 23,
                             Name = "Чорноморськ"
                         },
                         new
                         {
                             CityId = 443,
+                            DistrictId = 20,
                             Name = "Чортків"
                         },
                         new
                         {
                             CityId = 444,
+                            DistrictId = 7,
                             Name = "Чугуїв"
                         },
                         new
                         {
                             CityId = 445,
+                            DistrictId = 1,
                             Name = "Чуднів"
                         },
                         new
                         {
                             CityId = 446,
+                            DistrictId = 8,
                             Name = "Шаргород"
                         },
                         new
                         {
                             CityId = 447,
+                            DistrictId = 16,
                             Name = "Шахтарськ"
                         },
                         new
                         {
                             CityId = 448,
+                            DistrictId = 22,
                             Name = "Шепетівка"
                         },
                         new
                         {
                             CityId = 449,
+                            DistrictId = 25,
                             Name = "Шостка"
                         },
                         new
                         {
                             CityId = 450,
+                            DistrictId = 21,
                             Name = "Шпола"
                         },
                         new
                         {
                             CityId = 451,
+                            DistrictId = 20,
                             Name = "Шумськ"
                         },
                         new
                         {
                             CityId = 452,
-                            Name = "Щастя"
+                            DistrictId = 12,
+                            Name = "Щастя (місто)"
                         },
                         new
                         {
                             CityId = 453,
+                            DistrictId = 6,
                             Name = "Щолкіне"
                         },
                         new
                         {
                             CityId = 454,
+                            DistrictId = 23,
                             Name = "Южне"
                         },
                         new
                         {
                             CityId = 455,
+                            DistrictId = 5,
                             Name = "Южноукраїнськ"
                         },
                         new
                         {
                             CityId = 456,
+                            DistrictId = 3,
                             Name = "Яворів"
                         },
                         new
                         {
                             CityId = 457,
+                            DistrictId = 26,
                             Name = "Яготин"
                         },
                         new
                         {
                             CityId = 458,
+                            DistrictId = 6,
                             Name = "Ялта"
                         },
                         new
                         {
                             CityId = 459,
+                            DistrictId = 8,
                             Name = "Ямпіль"
                         },
                         new
                         {
                             CityId = 460,
+                            DistrictId = 17,
                             Name = "Яремче"
                         },
                         new
                         {
                             CityId = 461,
+                            DistrictId = 16,
                             Name = "Ясинувата"
                         });
                 });
@@ -3402,6 +3868,160 @@ namespace OLXFakedBackend.Migrations
                     b.HasKey("ClientIdentityId");
 
                     b.ToTable("ClientIdentity");
+                });
+
+            modelBuilder.Entity("OLXFakedBackend.Models.Db.District", b =>
+                {
+                    b.Property<int>("DistrictId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DistrictId"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("DistrictId");
+
+                    b.ToTable("District");
+
+                    b.HasData(
+                        new
+                        {
+                            DistrictId = 1,
+                            Name = "Житомирська область"
+                        },
+                        new
+                        {
+                            DistrictId = 2,
+                            Name = "Севастополь"
+                        },
+                        new
+                        {
+                            DistrictId = 3,
+                            Name = "Львівська область"
+                        },
+                        new
+                        {
+                            DistrictId = 4,
+                            Name = "Закарпатська область"
+                        },
+                        new
+                        {
+                            DistrictId = 5,
+                            Name = "Миколаївська область"
+                        },
+                        new
+                        {
+                            DistrictId = 6,
+                            Name = "АР Крим"
+                        },
+                        new
+                        {
+                            DistrictId = 7,
+                            Name = "Харківська область"
+                        },
+                        new
+                        {
+                            DistrictId = 8,
+                            Name = "Вінницька область"
+                        },
+                        new
+                        {
+                            DistrictId = 9,
+                            Name = "Чернівецька область"
+                        },
+                        new
+                        {
+                            DistrictId = 10,
+                            Name = "Херсонська область"
+                        },
+                        new
+                        {
+                            DistrictId = 11,
+                            Name = "Рівненська область"
+                        },
+                        new
+                        {
+                            DistrictId = 12,
+                            Name = "Луганська область"
+                        },
+                        new
+                        {
+                            DistrictId = 13,
+                            Name = "Полтавська область"
+                        },
+                        new
+                        {
+                            DistrictId = 14,
+                            Name = "Волинська область"
+                        },
+                        new
+                        {
+                            DistrictId = 15,
+                            Name = "Київ"
+                        },
+                        new
+                        {
+                            DistrictId = 16,
+                            Name = "Донецька область"
+                        },
+                        new
+                        {
+                            DistrictId = 17,
+                            Name = "Івано-Франківська область"
+                        },
+                        new
+                        {
+                            DistrictId = 18,
+                            Name = "Дніпропетровська область"
+                        },
+                        new
+                        {
+                            DistrictId = 19,
+                            Name = "Кіровоградська область"
+                        },
+                        new
+                        {
+                            DistrictId = 20,
+                            Name = "Тернопільська область"
+                        },
+                        new
+                        {
+                            DistrictId = 21,
+                            Name = "Черкаська область"
+                        },
+                        new
+                        {
+                            DistrictId = 22,
+                            Name = "Хмельницька область"
+                        },
+                        new
+                        {
+                            DistrictId = 23,
+                            Name = "Одеська область"
+                        },
+                        new
+                        {
+                            DistrictId = 24,
+                            Name = "Чернігівська область"
+                        },
+                        new
+                        {
+                            DistrictId = 25,
+                            Name = "Сумська область"
+                        },
+                        new
+                        {
+                            DistrictId = 26,
+                            Name = "Київська область"
+                        },
+                        new
+                        {
+                            DistrictId = 27,
+                            Name = "Запорізька область"
+                        });
                 });
 
             modelBuilder.Entity("OLXFakedBackend.Models.Db.ItemImage", b =>
@@ -3614,6 +4234,17 @@ namespace OLXFakedBackend.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserItem");
+                });
+
+            modelBuilder.Entity("OLXFakedBackend.Models.City", b =>
+                {
+                    b.HasOne("OLXFakedBackend.Models.Db.District", "District")
+                        .WithMany()
+                        .HasForeignKey("DistrictId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("District");
                 });
 
             modelBuilder.Entity("OLXFakedBackend.Models.ContactData", b =>
