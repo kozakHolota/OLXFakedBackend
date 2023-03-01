@@ -23,6 +23,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational.Design" Version="1.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
     <PackageReference Include="ChoETL" Version="1.2.1.51" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +44,18 @@
     <None Remove="ChoETL" />
     <None Remove="Utils\" />
     <None Remove="DbContexts\" />
+    <None Remove="configuration\" />
+    <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <None Remove="Microsoft.AspNetCore.Identity.UI" />
+    <None Remove="Models\Api\ Domain\" />
+    <None Remove="Models\Api\Product\" />
+    <None Remove="Models\Api\Product\Requests\" />
+    <None Remove="Models\Api\Product\Responses\" />
+    <None Remove="Models\Api\Authentication\" />
+    <None Remove="Models\Api\Authentication\Requests\" />
+    <None Remove="Models\Api\Authentication\Responses\" />
+    <None Remove="Models\Api\ Domain\Responses\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -51,5 +66,15 @@
     <Folder Include="DeploymentData\" />
     <Folder Include="Utils\" />
     <Folder Include="DbContexts\" />
+    <Folder Include="configuration\" />
+    <Folder Include="Models\Api\ Domain\" />
+    <Folder Include="Models\Api\Product\" />
+    <Folder Include="Models\Api\Product\Requests\" />
+    <Folder Include="Models\Api\Product\Responses\" />
+    <Folder Include="Models\Api\Authentication\" />
+    <Folder Include="Models\Api\Authentication\Requests\" />
+    <Folder Include="Models\Api\Authentication\Responses\" />
+    <Folder Include="Models\Api\ Domain\Responses\" />
+    <Folder Include="Models\Api\Authentication\Responses\" />
   </ItemGroup>
 </Project>

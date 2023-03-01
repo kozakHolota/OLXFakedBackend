@@ -1,20 +1,28 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using OLXFakedBackend.Models;
 using OLXFakedBackend.Utils;
 
 namespace OLXFakedBackend.Contracts
 {
-	public abstract class RepositoryBase<T>: IRepositoryBase<T> where T : class
+    public abstract class RepositoryBase<T>: IRepositoryBase<T> where T : class
     {
         protected ShopDbContext ShopDbContext { get; set; }
 
         public RepositoryBase(ShopDbContext shopDbContext)
 		{
             ShopDbContext = shopDbContext;
+            SetIdentityOn();
 		}
 
-        public async Task Create(T entity) => ShopDbContext.Set<T>().Add(entity);
+        private void SetIdentityOn() {
+            foreach (string table in ShopDbContext.tables) {
+                ShopDbContext.Database.ExecuteSqlRaw($"SET IDENTITY_INSERT {ShopDbContext.Database.GetDbConnection().Database}.dbo.{table} ON;");
+            }
+        }
+
+        public async Task Create(T entity) {
+            await ShopDbContext.Set<T>().AddAsync(entity);
+        }
 
         public async Task Delete(T entity) => ShopDbContext.Set<T>().Remove(entity);
 

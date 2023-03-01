@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using OLXFakedBackend.Contracts;
 using OLXFakedBackend.Models;
 using OLXFakedBackend.Models.Api;
+using OLXFakedBackend.Models.Api.Product.Requests;
 using OLXFakedBackend.Utils;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -28,22 +29,22 @@ namespace OLXFakedBackend.Controllers
 
         [HttpGet]
         [Route("all")]
-        public async Task<ActionResult> GetAllCities(string namePart="", int pageSize=5, int pageNum=1)
+        public async Task<ActionResult> GetAllCities([FromQuery] CitiesRequest cities)
         {
             List<CityApi> resList;
-            var _paginator = new Paginator<CityApi>(pageSize);
+            var _paginator = new Paginator<CityApi>(cities.pageSize);
 
-            if (namePart.Length > 0)
+            if (cities.namePart.Length > 0)
             {
 
-                resList = await _repositoryWrapper.CitiesRepository.FindByConditions(new List<Expression<Func<CityApi, bool>>>() { city => city.name.StartsWith(namePart) }, paginator: _paginator, pageNum: pageNum);
+                resList = await _repositoryWrapper.CitiesRepository.FindByConditions(new List<Expression<Func<CityApi, bool>>>() { city => city.name.StartsWith(cities.namePart) }, paginator: _paginator, pageNum: cities.pageNum);
 
             } else
             {
-                resList = await _repositoryWrapper.CitiesRepository.FindAll(paginator: _paginator, pageNum: pageNum);
+                resList = await _repositoryWrapper.CitiesRepository.FindAll(paginator: _paginator, pageNum: cities.pageNum);
             }
 
-            return Ok(new Cities { page=pageNum, pages=_paginator.GetPagesNumber(), cities = resList });
+            return Ok(new Cities { page= cities.pageNum, pages=_paginator.GetPagesNumber(), cities = resList });
         }
     }
 }

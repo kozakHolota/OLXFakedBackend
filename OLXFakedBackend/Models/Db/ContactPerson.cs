@@ -1,4 +1,4 @@
-﻿using System;
+﻿																																				using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -10,7 +10,10 @@ namespace OLXFakedBackend.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ContactPersonId { get; set; }
 		public string Name { get; set; }
-		public City? City { get; set; }
-	}
+        public int? CityId { get; set; }
+
+        [ForeignKey(nameof(CityId))]
+        public City? City { get; set; }
+    }
 }
 
