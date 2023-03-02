@@ -11,7 +11,11 @@ namespace OLXFakedBackend.Models
         public int ContactDataId { get; set; }
 		public string Email { get; set; }
 		public string Phone { get; set; }
-		public City? City { get; set; }
+		public int? CityId { get; set; }
+
+        [ForeignKey(nameof(CityId))]
+        public City? City { get; set; }
+
     }
 }
 

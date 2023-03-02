@@ -1,5 +1,7 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
 using OLXFakedBackend.Contracts;
+using OLXFakedBackend.Controllers;
 using OLXFakedBackend.Models;
 
 namespace OLXFakedBackend.Repository
@@ -10,6 +12,26 @@ namespace OLXFakedBackend.Repository
         private ICitiesRepository _citiesRepository;
         private ICategoryRepository _categoryRepository;
         private IItemsViewRepository _itemsRepository;
+        private ITokensRepository _tokensRepository;
+        private IUserPreferencesRpository _userPreferencesRpository;
+        private IAspNetUsersRepository _aspNetUsersRepository;
+        private IContactPersonRepository _contactPersonRepository;
+        private IImageRepository _imageRepository;
+        private IRequisitesRepository _requisitesRepository;
+        private ICityRepository _cityRepository;
+        private IUserUnitedRepository _userUnitedRepository;
+
+        private bool isDbChanged;
+
+        private bool IsDbChanged {
+            get {
+                if (isDbChanged == null) isDbChanged = false;
+
+                return isDbChanged;
+            }
+            set { isDbChanged = value; }
+        }
+
 
         public ICitiesRepository CitiesRepository
         {
@@ -41,6 +63,77 @@ namespace OLXFakedBackend.Repository
         public RepositoryWrapper(ShopDbContext shopDbContext)
         {
             _shopDbContext = shopDbContext;
+        }
+
+        public ITokensRepository TokensRepository {
+            get
+            {
+                if (_tokensRepository == null) _tokensRepository = new TokensRepository(_shopDbContext);
+
+                return _tokensRepository;
+            }
+        }
+
+        public IUserPreferencesRpository UserPreferencesRpository {
+            get
+            {
+                if (_userPreferencesRpository == null) _userPreferencesRpository = new UserPreferencesRepository(_shopDbContext);
+
+                return _userPreferencesRpository;
+            }
+        }
+
+        public IAspNetUsersRepository AspNetUsersRepository {
+            get
+            {
+                if (_aspNetUsersRepository == null) _aspNetUsersRepository = new AspNetUsersRepository(_shopDbContext);
+
+                return _aspNetUsersRepository;
+            }
+        }
+
+        public IContactPersonRepository ContactPersonRepository {
+            get
+            {
+                if (_contactPersonRepository == null) _contactPersonRepository = new ContactPersonRepository(_shopDbContext);
+
+                return _contactPersonRepository;
+            }
+        }
+
+        public IImageRepository ImageRepository {
+            get
+            {
+                if (_imageRepository == null) _imageRepository = new ImageRepository(_shopDbContext);
+
+                return ImageRepository;
+            }
+        }
+
+        public IRequisitesRepository RequisitesRepository {
+            get
+            {
+                if (_requisitesRepository == null) _requisitesRepository = new RequisitesRepository(_shopDbContext);
+
+                return _requisitesRepository;
+            }
+        }
+
+        public ICityRepository CityRepository {
+            get
+            {
+                if (_cityRepository == null) _cityRepository = new CityRepository(_shopDbContext);
+
+                return _cityRepository;
+            }
+        }
+
+        public IUserUnitedRepository UserUnitedRepository {
+            get {
+                if (_userUnitedRepository == null) _userUnitedRepository = new UserUnitedRepository(_shopDbContext);
+
+                return _userUnitedRepository;
+            }
         }
 
         public async Task SaveAsync()

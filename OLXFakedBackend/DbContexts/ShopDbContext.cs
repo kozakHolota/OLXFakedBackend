@@ -1,31 +1,40 @@
 ﻿using System;
 using System.Formats.Asn1;
+using System.Reflection.Metadata;
 using System.Text;
 using ChoETL;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using OLXFakedBackend.Models.Db;
 
 namespace OLXFakedBackend.Models
 {
-	public class ShopDbContext : DbContext
+	public class ShopDbContext : IdentityDbContext
     {
 		public DbSet<City> City { get; set; }
         public DbSet<ContactPerson> ContactPerson { get; set; }
         public DbSet<District> District { get; set; }
         public DbSet<Requisites> Requisites { get; set; }
-        public DbSet<User> User { get; set; }
         public DbSet<Image> Image { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<ContactData> ContactData { get; set; }
         public DbSet<Item> Item { get; set; }
         public DbSet<ItemImage> ItemImage { get; set; }
         public DbSet<UserItem> UserItem { get; set; }
-        public DbSet<ClientIdentity> ClientIdentity { get; set; }
         public DbSet<RefreshToken> RefreshToken { get; set; }
+        public DbSet<IdentityUser>? IdentityUser { get; set; }
+        public DbSet<UserUnited> UserUnited { get; set; }
 
-        public ShopDbContext(DbContextOptions options) : base(options) { }
+        public List<string> tables;
+
+        public ShopDbContext(DbContextOptions options) : base(options) {
+            tables = new List<string>() { "District", "City", "Category", "ContactPerson", "Requisites", "Image", "ContactData", "Item", "ItemImage", "UserUnited", "UserItem" };
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
+            base.OnModelCreating(modelBuilder);
             List<District> districts = new List<District>();
             using (var districtReader = new ChoCSVReader<District>("DeploymentData/UkrainianDistricts.csv").Configure(c => c.IgnoreEmptyLine = true)
                 .Configure(c => c.Delimiter = ",")

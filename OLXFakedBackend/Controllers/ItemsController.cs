@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using OLXFakedBackend.Contracts;
 using OLXFakedBackend.Models;
 using OLXFakedBackend.Models.Api;
+using OLXFakedBackend.Models.Api.Product.Requests;
 using OLXFakedBackend.Utils;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -52,34 +53,28 @@ namespace OLXFakedBackend.Controllers
 
         //items(items search endpoint - GET
         [HttpGet]
-        public async Task<ActionResult> GetAllItems(
-            int pageSize = 50,
-            int pageNum = 1,
-            string category = null,
-            string cityPart = null,
-            string itemKeyword = null
-            )
+        public async Task<ActionResult> GetAllItems([FromQuery] ItemsRequest itemsRequest)
         {
             List<ItemApi> items;
-            var _paginator = new Paginator<ItemApi>(pageSize);
+            var _paginator = new Paginator<ItemApi>(itemsRequest.pageSize);
 
             List<System.Linq.Expressions.Expression<Func<ItemApi, bool>>> conditions = new List<System.Linq.Expressions.Expression<Func<ItemApi, bool>>>();
 
-            if (category != null) conditions.Add(c => c.category == category);
-            if (cityPart != null) conditions.Add(c => c.city.StartsWith(cityPart));
-            if (itemKeyword != null) conditions.Add(
-                c=>c.name.Contains(itemKeyword)
-                || c.description.Contains(itemKeyword)
-                || c.subject.Contains(itemKeyword)
-                || c.category.Contains(itemKeyword)
-                || c.city.Contains(itemKeyword)
-                || c.district.Contains(itemKeyword)
+            if (itemsRequest.category != null) conditions.Add(c => c.category == itemsRequest.category);
+            if (itemsRequest.cityPart != null) conditions.Add(c => c.city.StartsWith(itemsRequest.cityPart));
+            if (itemsRequest.itemKeyword != null) conditions.Add(
+                c=>c.name.Contains(itemsRequest.itemKeyword)
+                || c.description.Contains(itemsRequest.itemKeyword)
+                || c.subject.Contains(itemsRequest.itemKeyword)
+                || c.category.Contains(itemsRequest.itemKeyword)
+                || c.city.Contains(itemsRequest.itemKeyword)
+                || c.district.Contains(itemsRequest.itemKeyword)
                 );
 
-            if (conditions.Count > 0) items = await _repositoryWrapper.ItemsViewRepository.FindByConditions(conditions, paginator: _paginator, pageNum: pageNum);
-            else items = await _repositoryWrapper.ItemsViewRepository.FindAll(paginator: _paginator, pageNum: pageNum);
+            if (conditions.Count > 0) items = await _repositoryWrapper.ItemsViewRepository.FindByConditions(conditions, paginator: _paginator, pageNum: itemsRequest.pageNum);
+            else items = await _repositoryWrapper.ItemsViewRepository.FindAll(paginator: _paginator, pageNum: itemsRequest.pageNum);
             
-            return Ok(new Items { page = pageNum, pages = _paginator.GetPagesNumber(), items = items });
+            return Ok(new Items { page = itemsRequest.pageNum, pages = _paginator.GetPagesNumber(), items = items });
         }
 
         //items/{item_id}(GET)
