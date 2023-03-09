@@ -4,11 +4,14 @@ using System.Linq;
 using System.Net.Mime;
 using System.Threading.Tasks;
 using ChoETL;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using OLXFakedBackend.Contracts;
 using OLXFakedBackend.Models;
 using OLXFakedBackend.Models.Api;
+using OLXFakedBackend.Models.Api.Authentication.Requests;
 using OLXFakedBackend.Models.Api.Product.Requests;
 using OLXFakedBackend.Utils;
 
@@ -91,19 +94,40 @@ namespace OLXFakedBackend.Controllers
 
 
         //items/add(POST)
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [Route("add")]
         [HttpPost]
-        public string AddNewItem()
+        public async Task<ActionResult> AddNewItem([FromBody] ItemAddRequest itemRequest)
         {
-            return $"item added successfully";
+            var userid = User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value;
+            if (userid == null) return BadRequest("Problems with the authenyication. User ID does not exist");
+            ItemAddRequestDb itemAddRequestDb = new ItemAddRequestDb {
+                userId=userid,
+                name= itemRequest.name,
+                subject = itemRequest.subject,
+                category = itemRequest.category,
+                description = itemRequest.description,
+                autoContinue = itemRequest.autoContinue,
+                contactEmail = itemRequest.contactEmail,
+                contactPhone = itemRequest.contactPhone,
+                contactCity = itemRequest.contactCity,
+                images = itemRequest.images
+            };
+            await _repositoryWrapper.ItemRepository.Create(itemAddRequestDb);
+            await _repositoryWrapper.SaveAsync();
+
+            return Ok(new { result = "success" });
         }
 
         //items/delete/{item_id} (DELETE)
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [Route("delete/{id}")]
         [HttpDelete]
-       public string DeleteItem(int id)
+       public async Task DeleteItem(int id)
         {
-            return $"item #{id} deleted successfully";
+            var userid = User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value;
+            await _repositoryWrapper.ItemRepository.Delete(id: id, userId: userid);
+            await _repositoryWrapper.SaveAsync();
         }
 
     }
