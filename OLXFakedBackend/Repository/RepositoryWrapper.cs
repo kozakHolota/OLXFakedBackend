@@ -20,6 +20,7 @@ namespace OLXFakedBackend.Repository
         private IRequisitesRepository _requisitesRepository;
         private ICityRepository _cityRepository;
         private IUserUnitedRepository _userUnitedRepository;
+        private IItemRepository _itemRepository;
 
         private bool isDbChanged;
 
@@ -133,6 +134,15 @@ namespace OLXFakedBackend.Repository
                 if (_userUnitedRepository == null) _userUnitedRepository = new UserUnitedRepository(_shopDbContext);
 
                 return _userUnitedRepository;
+            }
+        }
+
+        public IItemRepository ItemRepository {
+            get
+            {
+                if (_itemRepository == null) _itemRepository = new ItemRepository(_shopDbContext);
+
+                return _itemRepository;
             }
         }
 

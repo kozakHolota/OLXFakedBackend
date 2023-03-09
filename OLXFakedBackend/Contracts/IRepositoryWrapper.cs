@@ -16,6 +16,7 @@ namespace OLXFakedBackend.Contracts
         IRequisitesRepository RequisitesRepository { get; }
         ICityRepository CityRepository { get; }
         IUserUnitedRepository UserUnitedRepository { get; }
+        IItemRepository ItemRepository { get; }
 
         Task SaveAsync();
     }
