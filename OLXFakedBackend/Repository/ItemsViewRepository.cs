@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Internal;
 using OLXFakedBackend.Contracts;
 using OLXFakedBackend.Models;
 using OLXFakedBackend.Models.Api;
+using OLXFakedBackend.Models.Db;
 using OLXFakedBackend.Utils;
 
 namespace OLXFakedBackend.Repository
@@ -31,7 +32,7 @@ namespace OLXFakedBackend.Repository
                     subject = itemsApi.Subject,
                     category = itemsApi.Category.Name,
                     description = itemsApi.Description,
-                    images = ShopDbContext.Set<Image>().AsNoTracking().Select(i => i.Path).ToList(),
+                    images = ShopDbContext.ItemImage.Include(i=>i.Image).Include(i=>i.Item).Select(i=>i.Image.Path).AsNoTracking().ToList(),
                     autoContinue = itemsApi.AutoContinue,
                     email = itemsApi.ContactData.Email,
                     phone = itemsApi.ContactData.Phone,
