@@ -8,6 +8,18 @@ To deploy the application we need next things to be installed:
 - .NET 7
 
 # Get OLXFakedBackend Docker Environment up
+First we need to create internal docker network by typing the command:
+
+```
+docker network create olx_relation_network
+```
+
+Now we need to build the image:
+
+```
+docker compose build
+```
+
 We can get the docker environment up typing in the command terminal from the solution folder:
 
 ```

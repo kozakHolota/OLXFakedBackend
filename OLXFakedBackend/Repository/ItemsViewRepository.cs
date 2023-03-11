@@ -32,7 +32,7 @@ namespace OLXFakedBackend.Repository
                     subject = itemsApi.Subject,
                     category = itemsApi.Category.Name,
                     description = itemsApi.Description,
-                    images = ShopDbContext.ItemImage.Include(i=>i.Image).Include(i=>i.Item).Select(i=>i.Image.Path).AsNoTracking().ToList(),
+                    images = ShopDbContext.ItemImage.Include(i=>i.Image).Include(i=>i.Item).Where(i=>i.Item.ItemId == itemsApi.ItemId).Select(i=>i.Image.Path).AsNoTracking().ToList(),
                     autoContinue = itemsApi.AutoContinue,
                     email = itemsApi.ContactData.Email,
                     phone = itemsApi.ContactData.Phone,
