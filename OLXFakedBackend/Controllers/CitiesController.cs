@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 using System.Net.Mime;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using OLXFakedBackend.Contracts;
-using OLXFakedBackend.Models;
 using OLXFakedBackend.Models.Api;
 using OLXFakedBackend.Models.Api.Product.Requests;
 using OLXFakedBackend.Utils;
@@ -34,7 +28,7 @@ namespace OLXFakedBackend.Controllers
             List<CityApi> resList;
             var _paginator = new Paginator<CityApi>(cities.pageSize);
 
-            if (cities.namePart.Length > 0)
+            if (cities.namePart != null && cities.namePart.Length > 0)
             {
 
                 resList = await _repositoryWrapper.CitiesRepository.FindByConditions(new List<Expression<Func<CityApi, bool>>>() { city => city.name.StartsWith(cities.namePart) }, paginator: _paginator, pageNum: cities.pageNum);

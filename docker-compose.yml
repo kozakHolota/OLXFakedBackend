@@ -9,8 +9,15 @@ services:
     ports:
       - 8080:80
       - 8443:443
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    command: >
+      sh -c "dotnet dev-certs https --trust && dotnet run"
     volumes:
       - ./OLXFakedBackend/DeploymentData:/app/DeploymentData
+      - ~/.aspnet/https:/root/.aspnet/https:ro
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
     networks:
       - olx_relation_network
 
