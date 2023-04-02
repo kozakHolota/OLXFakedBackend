@@ -15,7 +15,6 @@ services:
     command: >
       sh -c "dotnet dev-certs https --trust && dotnet run"
     volumes:
-      - ./OLXFakedBackend/DeploymentData:/app/DeploymentData
       - ~/.aspnet/https:/root/.aspnet/https:ro
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
     networks:

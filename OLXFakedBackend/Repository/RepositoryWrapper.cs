@@ -21,6 +21,8 @@ namespace OLXFakedBackend.Repository
         private ICityRepository _cityRepository;
         private IUserUnitedRepository _userUnitedRepository;
         private IItemRepository _itemRepository;
+        private IUserItemRepository _userItemRepository;
+        private IImageItemRepository _imageItemRepository;
 
         private bool isDbChanged;
 
@@ -143,6 +145,21 @@ namespace OLXFakedBackend.Repository
                 if (_itemRepository == null) _itemRepository = new ItemRepository(_shopDbContext);
 
                 return _itemRepository;
+            }
+        }
+
+        public IUserItemRepository UserItemRepository {
+            get {
+                if (_userItemRepository == null) _userItemRepository = new UserItemRepository(_shopDbContext);
+
+                return _userItemRepository;
+            }
+        }
+
+        public IImageItemRepository ImageItemRepository { get {
+                if (_imageItemRepository == null) _imageItemRepository = new ImageItemRepository(_shopDbContext);
+
+                return _imageItemRepository;
             }
         }
 

@@ -15,6 +15,7 @@ namespace OLXFakedBackend.Models
 		public string Description { get; set; }
 		public bool AutoContinue { get; set; }
 		public ContactData ContactData { get; set; }
+		public double Price { get; set; }
 
         [ForeignKey(nameof(CategoryId))]
 		public Category Category { get; set; }

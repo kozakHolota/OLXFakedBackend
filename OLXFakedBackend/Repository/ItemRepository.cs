@@ -14,20 +14,27 @@ namespace OLXFakedBackend.Repository
 
 		public async Task Create(ItemAddRequestDb request) {
 			int categoryId = ShopDbContext.Category.Where(cat=>cat.Name == request.category).Select(cat => cat.CategoryId).FirstOrDefault();
-			var item = new Item {
-                Name = request.name,
-                Subject = request.subject,
-                Description = request.description,
-                AutoContinue = request.autoContinue,
-                CategoryId = categoryId, 
-                ContactData = new ContactData {
-					CityId = ShopDbContext.City.Where(c=>c.Name == request.contactCity).Select(c=>c.CityId).FirstOrDefault(),
-                    Email = request.contactEmail,
-                    Phone = request.contactPhone
-                }
-             };
 
-			await ShopDbContext.UserItem.AddAsync(new UserItem { Item = item, UserId = request.userId });
+			await ShopDbContext.UserItem.AddAsync(
+				new UserItem {
+					Item = new Item
+                    {
+                        Name = request.name,
+                        Subject = request.subject,
+                        Description = request.description,
+                        Price = request.price,
+                        AutoContinue = request.autoContinue,
+                        CategoryId = categoryId,
+                        ContactData = new ContactData
+                        {
+                            CityId = ShopDbContext.City.Where(c => c.Name == request.contactCity).Select(c => c.CityId).FirstOrDefault(),
+                            Email = request.contactEmail,
+                            Phone = request.contactPhone
+                        }
+                    },
+					UserId = request.userId
+				}
+				);
 		}
 
 		public async Task Delete(int id, string userId) {

@@ -1,4 +1,6 @@
 ﻿using System;
+using OLXFakedBackend.Models.Api.Utils;
+
 namespace OLXFakedBackend.Models.Api
 {
     public class ItemApi
@@ -8,7 +10,8 @@ namespace OLXFakedBackend.Models.Api
         public string subject { get; set; }
         public string category { get; set; }
         public string description { get; set; }
-        public List<string>? images { get; set; }
+        public double price { get; set; }
+        public List<ImageApi>? images { get; set; }
         public bool autoContinue { get; set; }
         public string email { get; set; }
         public string phone { get; set; }

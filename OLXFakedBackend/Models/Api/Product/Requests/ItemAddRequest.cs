@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using OLXFakedBackend.Models.Api.Utils;
 
 namespace OLXFakedBackend.Models.Api.Product.Requests
 {
@@ -12,6 +13,8 @@ namespace OLXFakedBackend.Models.Api.Product.Requests
         [Required]
         public string category { get; set; }
         [Required]
+        public double price { get; set; }
+        [Required]
         public string description { get; set; }
         [Required]
         public bool autoContinue { get; set; }
@@ -20,7 +23,7 @@ namespace OLXFakedBackend.Models.Api.Product.Requests
         [Required]
         public string contactPhone { get; set; }
         public string? contactCity { get; set; }
-        public List<string>? images { get; set; }
+        public List<ImageApi>? images { get; set; }
     }
 }
 
