@@ -4,11 +4,14 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using OLXFakedBackend;
 using OLXFakedBackend.configuration;
 using OLXFakedBackend.Models;
+using OLXFakedBackend.Models.Api.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,7 +33,12 @@ var tokenValidationParameters = new TokenValidationParameters
 
 //Initialize MS SQL DB
 builder.Services.AddDbContext<ShopDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ShopDbContext")));
+    {
+        options.UseSqlServer(builder.Configuration.GetConnectionString("ShopDbContext"));
+        //options.LogTo(message => new CustomSqlLogger().Log(LogLevel.Information, new EventId(), message, null, (state, _) => state.ToString()), LogLevel.Information);
+        options.LogTo(Console.WriteLine, LogLevel.Information);
+    }
+  );
 
 //Add Repository Wrapper Handler
 builder.Services.ConfigureRepositoryWrapper();
@@ -70,6 +78,13 @@ builder.Services.AddSwaggerGen(c =>
 
 //Refresh token configuration
 builder.Services.AddSingleton(tokenValidationParameters);
+
+//File service provider
+builder.Services.AddSingleton<IFileProvider>(x =>
+{
+    var env = x.GetRequiredService<IWebHostEnvironment>();
+    return new PhysicalFileProvider(env.ContentRootPath);
+});
 
 //Authentication configuration
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));

@@ -250,6 +250,7 @@ namespace OLXFakedBackend.Migrations
                         new
                         {
                             CategoryId = 1,
+                            CategoryIcon = "/api/images/item/categories/help_transparent.png",
                             Name = "Допомога"
                         },
                         new
@@ -267,6 +268,7 @@ namespace OLXFakedBackend.Migrations
                         new
                         {
                             CategoryId = 4,
+                            CategoryIcon = "/api/images/item/categories/kids_world_transparent.png",
                             Name = "Дитячий світ"
                         },
                         new
@@ -332,6 +334,7 @@ namespace OLXFakedBackend.Migrations
                         new
                         {
                             CategoryId = 15,
+                            CategoryIcon = "/api/images/item/categories/estate_transparent.png",
                             Name = "Нерухомість"
                         },
                         new
@@ -384,6 +387,7 @@ namespace OLXFakedBackend.Migrations
                         new
                         {
                             CategoryId = 24,
+                            CategoryIcon = "/api/images/item/categories/car_transparent.png",
                             Name = "Авто"
                         },
                         new
@@ -449,6 +453,7 @@ namespace OLXFakedBackend.Migrations
                         new
                         {
                             CategoryId = 35,
+                            CategoryIcon = "/api/images/item/categories/details_transparent.png",
                             Name = "Запчастини для транспорту"
                         },
                         new
@@ -513,6 +518,7 @@ namespace OLXFakedBackend.Migrations
                         new
                         {
                             CategoryId = 46,
+                            CategoryIcon = "/item/categories/work_transparent.png",
                             Name = "Робота"
                         },
                         new
@@ -668,6 +674,7 @@ namespace OLXFakedBackend.Migrations
                         new
                         {
                             CategoryId = 72,
+                            CategoryIcon = "/api/images/item/categories/pets_transparent.png",
                             Name = "Тварини"
                         },
                         new
@@ -727,6 +734,7 @@ namespace OLXFakedBackend.Migrations
                         new
                         {
                             CategoryId = 82,
+                            CategoryIcon = "/api/images/item/categories/generators_non_transparent.png",
                             Name = "Дім і сад"
                         },
                         new
@@ -804,6 +812,7 @@ namespace OLXFakedBackend.Migrations
                         new
                         {
                             CategoryId = 95,
+                            CategoryIcon = "/api/images/item/categories/gadgets_transparent.png",
                             Name = "Електроніка"
                         },
                         new
@@ -899,6 +908,7 @@ namespace OLXFakedBackend.Migrations
                         new
                         {
                             CategoryId = 111,
+                            CategoryIcon = "/api/images/item/categories/business_transparent.png",
                             Name = "Бізнес та послуги"
                         },
                         new
@@ -1024,6 +1034,7 @@ namespace OLXFakedBackend.Migrations
                         new
                         {
                             CategoryId = 132,
+                            CategoryIcon = "/api/images/item/categories/fashion_transparent.png",
                             Name = "Мода і стиль"
                         },
                         new
@@ -1177,26 +1188,31 @@ namespace OLXFakedBackend.Migrations
                         new
                         {
                             CategoryId = 158,
+                            CategoryIcon = "/api/images/item/categories/for_free_transparent.png",
                             Name = "Віддам безкоштовно"
                         },
                         new
                         {
                             CategoryId = 159,
+                            CategoryIcon = "/api/images/item/categories/exchange_transparent.png",
                             Name = "Обмін"
                         },
                         new
                         {
                             CategoryId = 160,
+                            CategoryIcon = "/api/images/item/categories/car_transparent.png",
                             Name = "Авто для перемоги"
                         },
                         new
                         {
                             CategoryId = 161,
+                            CategoryIcon = "/api/images/item/categories/blackout_transparent.png",
                             Name = "Електроніка для блекауту"
                         },
                         new
                         {
                             CategoryId = 162,
+                            CategoryIcon = "/api/images/item/categories/generators_transparent.png",
                             Name = "Генератори"
                         });
                 });
@@ -4296,6 +4312,9 @@ namespace OLXFakedBackend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImageId"));
 
+                    b.Property<bool>("IsFavorite")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Path")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -4329,6 +4348,9 @@ namespace OLXFakedBackend.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<string>("Subject")
                         .IsRequired()

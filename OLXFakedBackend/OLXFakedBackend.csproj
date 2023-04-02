@@ -56,6 +56,10 @@
     <None Remove="Models\Api\Authentication\Requests\" />
     <None Remove="Models\Api\Authentication\Responses\" />
     <None Remove="Models\Api\ Domain\Responses\" />
+    <None Remove="Exceptions\" />
+    <None Remove="images\" />
+    <None Remove="images\categories\" />
+    <None Remove="Models\Api\Utils\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -76,5 +80,9 @@
     <Folder Include="Models\Api\Authentication\Responses\" />
     <Folder Include="Models\Api\ Domain\Responses\" />
     <Folder Include="Models\Api\Authentication\Responses\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="images\" />
+    <Folder Include="images\categories\" />
+    <Folder Include="Models\Api\Utils\" />
   </ItemGroup>
 </Project>

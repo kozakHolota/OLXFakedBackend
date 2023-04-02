@@ -10,6 +10,7 @@ namespace OLXFakedBackend.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ImageId { get; set; }
 		public string Path { get; set; }
+        public bool IsFavorite { get; set; }
 
     }
 }

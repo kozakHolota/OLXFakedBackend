@@ -11,10 +11,12 @@ namespace OLXFakedBackend.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserItemId { get; set; }
         public string UserId { get; set; }
-        public Item Item { get; set; }
+        public int ItemId { get; set; }
 
         [ForeignKey(nameof(UserId))]
         public IdentityUser User { get; set; }
+        [ForeignKey(nameof(ItemId))]
+        public Item Item { get; set; }
     }
 }
 
