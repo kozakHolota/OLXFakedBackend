@@ -22,10 +22,10 @@ namespace OLXFakedBackend.Repository
         public async Task<IQueryable<ItemApi>> GetItemsQuery(List<System.Linq.Expressions.Expression<Func<ItemApi, bool>>> expressions = null)
         {
             var query = ShopDbContext.Item
-                .Include(c=>c.Category)
-                .Include(co=>co.ContactData)
-                .Include(cd=>cd.ContactData.City)
-                .Include(d=>d.ContactData.City.District)
+                .Include(c => c.Category)
+                .Include(co => co.ContactData)
+                .Include(cd => cd.ContactData.City)
+                .Include(d => d.ContactData.City.District)
                 .Select(
                 itemsApi => new ItemApi
                 {
@@ -34,14 +34,14 @@ namespace OLXFakedBackend.Repository
                     subject = itemsApi.Subject,
                     category = itemsApi.Category.Name,
                     description = itemsApi.Description,
-                    images = ShopDbContext.ItemImage.Include(i=>i.Image).Include(i=>i.Item).Where(i=>i.Item.ItemId == itemsApi.ItemId).Select(i=>new ImageApi { path = i.Image.Path, isFavorite = i.Image.IsFavorite }).AsNoTracking().ToList(),
+                    images = ShopDbContext.ItemImage.Include(i => i.Image).Include(i => i.Item).Where(i => i.Item.ItemId == itemsApi.ItemId).Select(i => new ImageApi { path = $"/api/images/{itemsApi.ItemId}/{i.Image.Path}", isFavorite = i.Image.IsFavorite }).AsNoTracking().ToList(),
                     autoContinue = itemsApi.AutoContinue,
                     email = itemsApi.ContactData.Email,
                     phone = itemsApi.ContactData.Phone,
                     city = itemsApi.ContactData.City.Name,
                     district = itemsApi.ContactData.City.District.Name
                 }
-                );
+                ) ;
 
             if (expressions != null)
             {
