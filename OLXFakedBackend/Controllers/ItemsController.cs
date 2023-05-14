@@ -41,7 +41,7 @@ namespace OLXFakedBackend.Controllers
 
             foreach(var category in await _repositoryWrapper.CategoryRepository.FindByConditions(new List<System.Linq.Expressions.Expression<Func<Category, bool>>>() { cat => cat.ParentCategoryId == null }))
             {
-                superCategories.Add(new SuperCategory { CategoryId = category.CategoryId, Name = category.Name});
+                superCategories.Add(new SuperCategory { CategoryId = category.CategoryId, Name = category.Name, iconPath=category.CategoryIcon });
             }
 
             foreach(var superCategory in superCategories)
@@ -177,8 +177,13 @@ namespace OLXFakedBackend.Controllers
 
             foreach (var image in itemRequest.images)
             {
+                string serverPath = ImageUtil.GetItemImagesPath(itemId);
+                ImageUtil.PlaceImage(image.fileName, serverPath, image.fileName);
+                bool isFavorite = true ? itemRequest.images.IndexOf(image) == 0 : false;
+                string imgApiPath = ImageUtil.GetItemImageApiPath(itemId, image.fileName);
+
                 await _repositoryWrapper.ImageItemRepository.Create(
-                    new ItemImage { ItemId = itemId, Image = new Image { Path = image.path, IsFavorite = image.isFavorite } }
+                    new ItemImage { ItemId = itemId, Image = new Image { Path = imgApiPath, IsFavorite = isFavorite } }
                     );
             }
 
