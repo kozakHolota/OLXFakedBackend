@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using OLXFakedBackend.Models.Api.Authentication.Requests;
 
 namespace OLXFakedBackend.Models.Api
 {
@@ -14,7 +15,7 @@ namespace OLXFakedBackend.Models.Api
         public string? email { get; set; }
         public string? phoneNumber { get; set; }
         public string? contactCity { get; set; }
-        public string? imagePath { get; set; }
+        public ImageUserRequest? image { get; set; }
         public string? lowName { get; set; }
         public string? lowAddress { get; set; }
         public int? zipCode { get; set; }

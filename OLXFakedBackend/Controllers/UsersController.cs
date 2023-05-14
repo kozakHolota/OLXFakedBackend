@@ -19,13 +19,14 @@ using OLXFakedBackend.Models;
 using OLXFakedBackend.Models.Api;
 using OLXFakedBackend.Models.Api.Authentication.Requests;
 using OLXFakedBackend.Models.Db;
+using OLXFakedBackend.Utils;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace OLXFakedBackend.Controllers
 {
-    [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
+    [ApiController]
     [Route("api/users")]
     public class UsersController : ControllerWithJwt
     {
@@ -69,9 +70,13 @@ namespace OLXFakedBackend.Controllers
 
                     var unitedUser = new UserUnited { UserId = newUser.Id, ContactPerson = contactPerson };
 
-                    if(_user.imagePath != null)
+                    if(_user.image != null)
                     {
-                        unitedUser.Image = new Models.Image { Path = _user.imagePath };
+                        string serverPath = ImageUtil.GetUserPicPath(newUser.Id);
+                        ImageUtil.PlaceImage(_user.image.base64Content, serverPath, _user.image.fileName);
+
+
+                        unitedUser.Image = new Models.Image { Path = ImageUtil.GetUserImageApiPath(newUser.Id, _user.image.fileName) };
                     }
 
                     if(_user.lowName != null)
@@ -109,7 +114,7 @@ namespace OLXFakedBackend.Controllers
                 { StatusCode = 500 };
         }
 
-      
+
         [Route("login")]
         [HttpPost]
         public async Task<IActionResult> userLogin([FromBody] UserLoginRequest user)
@@ -172,6 +177,7 @@ namespace OLXFakedBackend.Controllers
             return Ok(_curUser);
         }
 
+        [Produces(MediaTypeNames.Application.Json)]
         [Route("{id}")]
         [HttpGet]
         public string GetUserById(int id)
