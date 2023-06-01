@@ -26,7 +26,7 @@ namespace OLXFakedBackend.Repository
                     PhoneNumber = s.User.PhoneNumber,
                     ContactPersonName = s.ContactPerson.Name,
                     ContactCity = s.ContactPerson.City.Name,
-                    ImagePath = $"/api/images/{s.UserId}/{s.Image.Path}",
+                    ImagePath = s.Image.Path,
                     LowName = s.Requisites.LowName,
                     LowAddress = s.Requisites.LowAddress,
                     ZipCode = s.Requisites.ZipCode,

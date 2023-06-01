@@ -49,8 +49,9 @@ namespace OLXFakedBackend.Controllers
         {
                 // check i the user with the same email exist
                 var existingUser = await _userManager.FindByEmailAsync(_user.userId);
+                var existingUser1 = await _userManager.FindByEmailAsync(_user.email);
 
-                if (existingUser != null)
+            if (existingUser != null || existingUser1 != null)
                 {
                     return BadRequest(new RegistrationResponse()
                     {
