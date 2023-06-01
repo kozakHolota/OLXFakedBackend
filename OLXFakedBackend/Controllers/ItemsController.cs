@@ -178,7 +178,7 @@ namespace OLXFakedBackend.Controllers
             foreach (var image in itemRequest.images)
             {
                 string serverPath = ImageUtil.GetItemImagesPath(itemId);
-                ImageUtil.PlaceImage(image.fileName, serverPath, image.fileName);
+                ImageUtil.PlaceImage(image.base64Content, serverPath, image.fileName);
                 bool isFavorite = true ? itemRequest.images.IndexOf(image) == 0 : false;
                 string imgApiPath = ImageUtil.GetItemImageApiPath(itemId, image.fileName);
 

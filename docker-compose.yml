@@ -1,7 +1,17 @@
 version: '3.4'
 
 services:
-  olxfakedbackend:
+  backend_db:
+    image: mcr.microsoft.com/azure-sql-edge:1.0.6
+    environment:
+       MSSQL_SA_PASSWORD: test3210!
+       ACCEPT_EULA: Y
+    ports:
+       - 1433:1433
+    networks:
+      - olx_relation_network
+
+  olxfakedbackend :
     image: ${DOCKER_REGISTRY-}olxfakedbackend
     build:
       context: .
@@ -13,20 +23,10 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
     command: >
-      sh -c "dotnet dev-certs https --trust && dotnet run"
+      bash -c "dotnet dev-certs https --trust && dotnet run"
     volumes:
       - ~/.aspnet/https:/root/.aspnet/https:ro
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
-    networks:
-      - olx_relation_network
-
-  backend_db:
-    image: mcr.microsoft.com/azure-sql-edge:1.0.6
-    environment:
-       MSSQL_SA_PASSWORD: test3210!
-       ACCEPT_EULA: Y
-    ports:
-       - 1433:1433
     networks:
       - olx_relation_network
 

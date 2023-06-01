@@ -75,6 +75,28 @@ namespace OLXFakedBackend.Controllers
                 return NotFound(errorResponse);
             }
         }
+
+        [Route("item/{itemId}/{imageName}")]
+        [HttpGet]
+        public async Task<ActionResult> GetItemPic(int itemId, string imageName)
+        {
+            string imgFolder = ImageUtil.GetItemImagesPath(itemId);
+            string imgPath = Path.Combine(imgFolder, imageName);
+            try
+            {
+                return await GetImage(imgPath);
+            }
+            catch (FileNotFoundException)
+            {
+                var errorResponse = new
+                {
+                    StatusCode = 404,
+                    Message = $"Image '{imageName}' not found"
+                };
+
+                return NotFound(errorResponse);
+            }
+        }
     }
 }
 

@@ -24,4 +24,5 @@ COPY --from=publish /app/publish .
 COPY --from=build /src/OLXFakedBackend/images ./images
 COPY --from=build /src/OLXFakedBackend/DeploymentData ./DeploymentData
 
+
 ENTRYPOINT ["dotnet", "OLXFakedBackend.dll"]
