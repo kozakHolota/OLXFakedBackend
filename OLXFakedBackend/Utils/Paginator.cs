@@ -60,7 +60,7 @@
 			}
 
 
-			return InQuery.Take(FinPosition - StartPosition).Skip(StartPosition);
+			return InQuery.Take(FinPosition).Skip(StartPosition);
 
         }
 
