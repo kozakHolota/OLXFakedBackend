@@ -1,17 +1,14 @@
 ﻿//This is first my comment
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using OLXFakedBackend;
 using OLXFakedBackend.configuration;
 using OLXFakedBackend.Models;
-using OLXFakedBackend.Models.Api.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 

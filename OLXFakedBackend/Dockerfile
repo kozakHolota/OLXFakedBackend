@@ -10,6 +10,7 @@ WORKDIR /src
 COPY ["OLXFakedBackend/OLXFakedBackend.csproj", "OLXFakedBackend/"]
 RUN dotnet restore "OLXFakedBackend/OLXFakedBackend.csproj"
 COPY . .
+
 WORKDIR "/src/OLXFakedBackend"
 RUN dotnet build "OLXFakedBackend.csproj" -c Release -o /app/build
 
