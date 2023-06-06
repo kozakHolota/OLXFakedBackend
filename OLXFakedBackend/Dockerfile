@@ -9,6 +9,7 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 COPY ["OLXFakedBackend/OLXFakedBackend.csproj", "OLXFakedBackend/"]
 RUN dotnet restore "OLXFakedBackend/OLXFakedBackend.csproj"
+ADD ../certs/aspnetapp.pfx /https/
 COPY . .
 
 WORKDIR "/src/OLXFakedBackend"
@@ -23,7 +24,7 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 
 COPY --from=build /src/OLXFakedBackend/images ./images
-COPY --from=build /src/OLXFakedBackend/DeploymentData ./DeploymentData
+COPY ../OLXFakedBackend/DeploymentData ./DeploymentData
 
 
 ENTRYPOINT ["dotnet", "OLXFakedBackend.dll"]

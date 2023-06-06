@@ -18,4 +18,6 @@ RUN dotnet publish "CitiesService.csproj" -c Release -o /app/publish /p:UseAppHo
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+COPY ../OLXFakedBackend/DeploymentData ./DeploymentData
+
 ENTRYPOINT ["dotnet", "CitiesService.dll"]

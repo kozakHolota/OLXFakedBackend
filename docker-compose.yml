@@ -48,6 +48,25 @@ services:
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
     networks:
       - olx_relation_network
+  
+  items_service:
+    image: ${DOCKER_REGISTRY-}itemsservice
+    build:
+      context: .
+      dockerfile: ItemsService/Dockerfile
+    ports:
+      - 8280:80
+      - 8243:443
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    command: >
+      bash -c "dotnet dev-certs https --trust && dotnet run"
+    volumes:
+      - ~/.aspnet/https:/root/.aspnet/https:ro
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+    networks:
+      - olx_relation_network
 
 networks:
   olx_relation_network:
