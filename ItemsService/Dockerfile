@@ -18,11 +18,8 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 COPY ../OLXFakedBackend/DeploymentData ./DeploymentData
-
-FROM base AS final
-WORKDIR /https
 # Copy your .pfx file to the Docker container
-ADD ../certs/aspnetapp.pfx .
+COPY ../certs/aspnetapp.pfx /https/
 
 # Set necessary environment variables
 ENV ASPNETCORE_URLS="https://+;http://+"

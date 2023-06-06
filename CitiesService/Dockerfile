@@ -19,5 +19,6 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 COPY ../OLXFakedBackend/DeploymentData ./DeploymentData
+COPY ../certs/aspnetapp.pfx /https/
 
 ENTRYPOINT ["dotnet", "CitiesService.dll"]
